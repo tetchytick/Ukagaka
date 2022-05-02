@@ -1,0 +1,42 @@
+﻿//This file sets up the basic information for your ghost. There's not too much you need to touch here, just fill out the information as required. Always replace the words AFTER the comma! That means leave the first word of these (like charset, name, ghost, sakura.name, icon, craftman) ALONE. Just fill in the value after it.
+
+
+//This sets the character set for your ghost. Most Japanese ghosts are set to Shift-JIS, but yours will be UTF-8. Don't mess with this.
+
+charset,UTF-8
+
+
+//The name of your ghost is what will be displayed when you are loading your ghost or switching to it, and also how it is referred to in certain functions. Usually this will be "Character and character" or just "Character" depending on your ghost. The type of the ghost will be ghost, obviously, leave that alone.
+
+name,Legacy
+type,ghost
+
+
+//This defines which is the main character and which is the side character. The main character of a ghost is referred to as "sakura" by the code, and the side character as "kero". If you see these names in the functions, that's who they are referring to. Replace the names as you need.
+
+
+sakura.name,Legacy
+
+
+//This is the information about you, the creator of your ghost! Put in your name or whatever alias you want and whatever website you'd like to link to.
+//You may be wondering why there's both craftman and craftmanw. Well, craftmanw is for non-alphanumeric characters like Japanese, Chinese, Korean, Russian, Arabic, things like that. So if your name is, say, 大嶋啓之, then you'd want to put that in craftmanw. Then you'd put your name in alphanumeric characters in craftman. If you want, you can delete craftmanw if you're not going to use it. Don't delete craftman though.
+
+craftman,tetchy
+craftmanurl,https://tetchytick.carrd.co/
+
+
+//This is coding stuff, don't touch it.
+
+sstp.allowunspecifiedsend,0
+shiori,yaya.dll
+
+
+//This next bit defines what icon your ghost will use in your taskbar. Replace "gt_template.ico" with the icon file you're going to be using.
+//To make an icon file, draw yourself a 16x16 image for your ghost and save it as a png. I then went to a free site to convert it to an ico file. I believe it was this site - http://www.convertico.com/ but I can't quite remember. Anyway, I'm sure some quick googling will find a site that'll convert your png into an ico for you.
+
+icon,legacy.ico
+
+
+//If you have a special balloon for your ghost, you can set it here with balloon, which will highlight it in the Change Balloon menu so it'll be easier to find.
+
+balloon,z_simple

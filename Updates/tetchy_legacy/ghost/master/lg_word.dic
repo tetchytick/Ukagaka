@@ -1,0 +1,143 @@
+﻿//---------------------------Envelopes--------------------------
+//This .dic file is probably one of the simplest you will have to edit, and in fact, if the way it works doesn't appeal to you, you can completely ignore it if you like!
+//Basically, what this file does is set up some things that, for the purposes of this file, I'll call envelopes (this is what they're referred to as on the CROW-SSP Dictionary site... at least, that's what I remember, it's been a while since I've checked it). They are technically functions and can do many things, but this file is mostly an organizational tool for storing lists you may use.
+//For the purposes of this file, an envelope is a list that you can populate with items, and this list can be called later during dialogue with the %(name) format. If you've read the walkthrough or gone through any of the other .dic files, you've probably seen these before. %(username) is one, which displays the user's name, and %(heshe) is another, which displays the right pronoun depending on what the user selected in bootend.dic or menu.dic. Other ones include %(passmin), which shows how many minutes have passed since the ghost was started, %(screenheight) which shows the height of the display they're currently on, and %(keroname) for the name of the second character, among many, many others. Many of these are predefined by the AYA scripting and will be listed on the CROW-SSP site mentioned above, and many of them you will never have to use.
+
+//So where does this file come in? Well, you can define your own envelopes/variables if you want! Here's an example.
+
+exampleenvelope
+{
+	"Example Envelope Dialogue 1"
+	"Example Envelope Dialogue 2"
+	"Example Envelope Dialogue 3"
+}
+
+//As you can see, we stated a word, opened some brackets, wrote some text, and closed the brackets. Now when you write ghost dialogue, you can write %(exampleenvelope) and your ghost will randomly display any of the three bits of text within the brackets! You can go ahead and test this yourself to see how it works, and I'll include some sample dialogue with this in aitalk.dic.
+
+//What can you use this kind of envelope for? You can store tons of random information to keep your ghost's dialogue varied! You can store various cities you like in %(city), musicians you like in %(musicians), places your ghost has been in %(places), food you like in %(food), movies you like in %(movie), fandoms you like in %(fandom), characters you like in %(fandomcharacter), celebrities you like under %(celebrity) or friends of yours in %(friends) or bnfs in %(bnfs), folders on your computer under %(folders), Pokemon you like under %(pokemon), insults under %(insult), swear words under %(swearword) which could potentially be hilarious, just about anything! You can make lists of absolutely anything to use with dialogue for your ghost! This .dic file is only limited by your imagination!
+//Not only that, but you can put an envelope IN an envelope. Here's another example.
+
+internalenvelope
+{
+	"Internal Envelope Dialogue 1 - %(exampleenvelope)"
+	"%(username)'s computer"
+	"Here is a blanklist object - %(blanklist)."
+}
+
+//You can nest envelopes all day long, although it might get kind of convoluted if you don't keep track. This is particularly handy with %(username), so your ghost can be specific if they're talking about something of the user's, like their files or folders for example. I'll leave a few lists in here you can fill out as you like. And if this doesn't give you ideas, you can ignore this file, since nothing in it will show up unless you write it into the dialogue. You can add or take away as many items as you want from each list.
+
+		//*********************Advanced User Info*******************************
+	  //These text boxes are meant for those who have an interest in expanding or using more complicated functions in their ghost. Also for my own reference in the future since I plan on using this template too, haha. If you have no interest in any of this and just want to keep things as simple as possible, feel free to skip these boxes.
+	  
+	  //Because these are basically their own functions, you can do other things with them as well as display dialogue. You can add if/else checks, run other functions, have pools of alternate dialogue... the possibilities are really endless.
+	  
+	  //One particularly useful thing you can do is add value changes to an envelope, if your dialogue is in a place where it's not easy to add the change directly. For example...
+	  
+	  //FeelingsGoUp
+	  //{
+	  //Feelings += 1
+	  //"Thank you, %(username), that was really nice of you.\e"
+	  //}
+	  
+	  //So this would display the dialogue as well as change the value. Then you can call this in dialogue if you need to to change the value without having to do a bunch of fiddly business. Specifically I'm thinking about things like RandomTalk, where it can be finicky to have dialogue that also changes a value like this. Like "Oh... wow... %(FeelingsGoUp\e" could go into RandomTalk and still change the value effectively without breaking anything. You can of course also change multiple values at once, and if you don't put dialogue in there, it will change the value invisibly.
+	  
+	  //Another use for these envelopes is to shortcut certain long lines of SakuraScript you don't want to have to keep typing. A good example is if you want to change the font for a character. Take Papyrus from my Gaster ghost, he talks in the font Papyrus. But I don't want to have to type the tag for it for every line of dialogue he does. So instead I can put it in an envelope.
+	  
+	  //p
+	//	{
+	//	"\f[name,Papyrus UT]\f[height,16]"
+	//	}
+		
+		//And then I can make one that'll change the font back to normal.
+		
+	//	d
+	//{
+	//"\f[name,default]\f[height,default]"
+	//}
+	
+	//So in dialogue, to change fonts I'd just have to go "%(p)HEY THERE!%(d)" to change fonts back and forth quickly. These kind of shortcuts can be very useful.
+	
+	//Another way to use envelopes is to store multiple poses for SurfaceRestore in aitalk.dic. Gaster for example has several neutral idle poses, but also several poses for when he's scared. So I can make an envelope like
+	
+	//scared
+	//{
+	//"\0\s[9]\i[3]\i[104]\i[39]"
+	//"\0\s[100]\i[2]\i[40]\i[104]"
+	//"\0\s[100]\i[2]\i[40]\i[106]"
+	//}
+	
+	//And have him randomly pick one whenever I use %(scared) in dialogue. This can be an easy way to vary certain poses without having to manually put them in one at a time, and have some variety when your ghost goes back to its neutral pose in SurfaceRestore.
+		
+	  //***********************************************************************
+
+blanklist
+{
+	"List object 1"
+	"List object 2"
+	"List object 3"
+	"List object 4"
+	"List object 5"
+}
+
+blanklist2
+{
+	"List object 1"
+	"List object 2"
+	"List object 3"
+	"List object 4"
+	"List object 5"
+	"List object 6"
+	"List object 7"
+	"List object 8"
+}
+
+blanklist3
+{
+	"List object 1"
+	"List object 2"
+	"List object 3"
+	"List object 4"
+}
+
+blanklist4
+{
+	"List object 1"
+	"List object 2"
+}
+
+//This envelope in particular I think is fun. You can use this in dialogue to pretend like your ghost is looking through your user's files!
+
+usersfolder
+{
+	"%(username)'s Recycle Bin"
+	"%(username)'s Document folder"
+	"%(username)'s secret folder"
+}
+
+
+//Now, this next envelope is unique. I've called it a double envelope at times, but this is actually technically an array. Note that it has a word, a comma, then another word. This is essentially a list being stored in this envelope. You can call one of the values by using brackets around the number of the list entry. So, the first value (the Korean word) would be %(lessonkor[0]) since all arrays start at 0. The second value (the definition) would be %(lessonkor[1]). If you have a longer array, like "word,word,word,word,word", you can keep calling values by changing the numbers, like %(lessonkor[5]) or %(lessonkor[10]). Arrays can be very powerful and useful for storing a lot of information in a condensed space, but I must level with you, I'm not very good at arrays or figuring out how to use them. :B They can be VERY useful though, if you can wrap your head around how they work. An example of pulling information from this array can be seen in aitalk.dic.
+
+lessonkor
+{
+	"사과(sa-gua),apple"
+	"노동(no-dong),labor"
+	"손가락(son-ga-rak),finger"
+	"마르크스(ma-r-k-s),Marx"
+	"자본주의(ja-bon-ju-yi),capitalism"
+}
+
+//You can also format your envelopes like this as one line separated by semicolons, but personally I think the spaced lists above look nicer. It's up to you however you want to set them up.
+
+blanklistparagraph
+{
+	"List paragraph 1"; "List paragraph 2"; "List paragraph 3"; "List paragraph 4"; "List paragraph 5";
+}
+
+
+ //**** Don't touch this ***************************************************************
+ //This is code stuff and nothing for you to worry about, just save the .dic and move on! You're done!
+ 
+ On_\person
+{
+ 	person
+}

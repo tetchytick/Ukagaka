@@ -1,0 +1,23 @@
+=========================================================
+2022/05/01 21:12:41.628
+
+-----send------------------------
+GET SHIORI/3.0
+Charset: UTF-8
+Sender: SSP
+SenderType: internal
+SecurityLevel: local
+ID: OnSecondChange
+Reference0: 9
+Reference1: 0
+Reference2: 0
+Reference3: 1
+Reference4: 0
+
+
+-----response--------------------
+***CallTime:16msec.
+SHIORI/3.0 204 No Content
+Charset: UTF-8
+
+

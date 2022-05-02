@@ -1,0 +1,45 @@
+//This tiny file clears out the pieces of a surface in the Surface Test option in the Developer's panel. All the numbers that have an asterisk near them. Basically, eye or mouth frames that aren't part of a surface as defined in surfaces.txt. It just makes it easier for you to find a defined surface in Surface Test. You can also use it to assign surfaces nicknames in the surface test!
+
+
+//You don't need to touch this part.
+charset,UTF-8
+version,1
+option,DisableNoDefineSurfaces
+
+
+//I talk about this a little more on the site itself, but I'll go over it here too. Here's an example of surfacetable.txt set up with unique groups.
+
+group,EP
+{
+scope,0
+
+0,Base
+1,Embarrassed
+2,Surprised
+3,Worried
+4,Sad
+5,Smile
+6,Contented
+7,Angry
+8,Thoughtful
+9,Bored
+}
+
+//First, we define a group. Then we give that group a name, in this case, G. You generally have VERY little space to read with the Surface Test, so you'll want these group names to be pretty short. But you can adjust and change it as you try this out.
+
+//Once we defined the group, we open up some brackets to put in our values. That first line defines whether the group applies to the main character of the ghost or the sidekick. It's not a super meaningful distinction, in my experience, but there's no harm in including it. 0 means the surfaces are associated with the main character, and 1 is associated with the side character, as usual.
+
+//After that, we have the surface number, and a nickname. In this case, Surface0, and I gave it the nickname "default". So when you load up Surface Test, you'll see that 0 will have (G/Default) next to it. After that, all you have to do is add all the surface numbers you have defined, then give them whatever name will be most useful to you. Boom!
+
+//You can define multiple groups with different names if that helps you keep things straight. You can have a group for Main poses, a group for Special poses, a group for Lying Down poses... how you use this to keep your files organized is up to you. You will see as you begin giving surfaces nicknames and reloading and checking the Surface Test whether or not your names are too short or too long or not descriptive enough or what have you. You'll just have to figure out your own schema.
+
+//You can also use this to disable surfaces you don't want to appear in the surfacetable.txt list. Now, disabling a group of surfaces is pretty simple. You don't have to add a disabled group if you don't need one. But if you do, here's how.
+
+//group,__disabled
+//{
+//9999,__parts
+//}
+
+//In this case, we made a group called __disabled. Any surfaces you don't want to appear in Surface Test, you can put into the __disabled group. I don't think nicknames are really necessary for them, I just called this one __parts for no reason, but it probably doesn't hurt.
+
+//Once you've set up this file, you're all set! You should see the changes in the surface test immediately once you reload your shell.

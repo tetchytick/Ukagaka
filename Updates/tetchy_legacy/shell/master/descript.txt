@@ -1,0 +1,113 @@
+﻿//There's a lot more going on in the descript.txt for a shell than for your ghost in general, as you can probably tell. I'll try to break it down.
+
+
+//Free or Bound
+//This determines whether or not your ghost can be moved freely around the desktop or if it's stuck to the bottom or top of the desktop.  The three values you can use here are free, bottom, and top. If your ghost is cut off at the chest or something, then you'd want it to be stuck to the bottom of the screen. Likewise if you're doing a hanging ghost, like Glados or Flowey or something, then you'd want to use top. Right now, this is set to free, meaning the ghost can be moved around freely by the user.
+
+seriko.alignmenttodesktop,free
+seriko.use_self_alpha,1
+
+
+//Use_self_alpha
+//This makes it so you don't have to use pna files for your shell. Saves a ton of time and effort.
+
+seriko.use_self_alpha,1
+
+
+//General Information
+//A few things here, a lot fairly similar to the descript.txt for your ghost. charset and type will be unchanged. Replace name with the name for your shell and put in your name for the craftman and the url. 
+
+charset,UTF-8
+type,shell
+name,Legacy
+craftman,tetchytick
+craftmanurl,https://tetchytick.carrd.co/
+
+//TEMPLATE ORIGNALLY MADE BY ZARLA S <3
+
+//Balloon Co-ordinates
+//These basically define where your balloon starts for your main character (sakura) and your secondary character (kero). While you're testing your ghost, you'll notice that moving the balloons around shows you a set of coordinates on the bottom. Move your balloons where you want them, write down the coordinates, and copy them here. Otherwise, you can just leave them at 0. Your user will adjust them as they need to, so I wouldn't sweat this too much.
+//Alignment means which way you want your balloon to be facing. There are three options here: right, left, or none. If you choose right or left, the balloon will ALWAYS face right or left. If you put none, however, the balloon will flip sides whenever it hits the side of the screen. For example, if you drag your ghost with a right balloon all the way to the right side of your screen, it'll flip the balloon to the left side. I generally prefer putting it to none because it's convenient to me to flip balloons as I need to, but this is up to you.
+
+sakura.balloon.offsetx,0
+sakura.balloon.offsety,0
+kero.balloon.offsetx,0
+kero.balloon.offsety,0
+sakura.balloon.alignment,none
+kero.balloon.alignment,none
+
+
+//Shiori Icon
+//Don't mess with any of this.
+
+shiori.logo.filename,resources\niseshiori.png
+shiori.logo.x,16
+shiori.logo.y,256
+
+
+//Menu Font Color
+//Like it says, this is the font color for the right-click SSP menu. r g b stand for red blue green, adjust the values to get the color you want. This'll probably take some trial and error.
+
+menu.background.font.color.r,0
+menu.background.font.color.g,0
+menu.background.font.color.b,0
+
+
+//Menu Highlighted Text Color
+//See above
+
+menu.foreground.font.color.r,255
+menu.foreground.font.color.g,255
+menu.foreground.font.color.b,255
+
+
+//Menu Greyed Out Font Color
+//For options that aren't selectable for some reason.
+
+menu.disable.font.color.r,222
+menu.disable.font.color.g,222
+menu.disable.font.color.b,222
+
+
+//Menu Separate Color
+//The color of the tiny line that separates the sections on the menu.
+
+menu.separator.color.r,0
+menu.separator.color.g,0
+menu.separator.color.b,0
+
+
+//Menu Background Image Alignment
+//If you have images you want to set for your menu, this determines the alignment of the background and foreground pictures. You can put in lefttop, righttop, or centertop, and bottom or top for the sidebar. You'd be replacing righttop or bottom with whatever alignment you prefer.
+
+menu.background.alignment,centertop
+menu.foreground.alignment,centertop
+menu.sidebar.alignment,bottom
+
+
+//Menu Background Image Location
+//The location of the files you want to use for your background images. You'd be replacing menu_background.png with whatever the name is for your background image, and so on. If you've just saved images over mine, you won't have to adjust this at all I think.
+
+menu.background.bitmap.filename,menu_background.png
+menu.foreground.bitmap.filename,menu_foreground.png
+menu.sidebar.bitmap.filename,menu_sidebar.png
+
+
+//--Dress-up Code
+//Clothing can be a little complicated, so I'd recommend reading the clothing page on the walkthrough before coming back here. I'll leave a bit of cindysuke's clothing code in here just as an example. If you're going to use these lines, make sure to uncomment them by removing the slashes.
+//As a brief overview, sakura (the main character), has a clothing item called "glasses" that's in a section called "face". The second character, kero, has two items, one called "glasses" in the "face" section and one called "hairpins" that's in the "hair" section. What you call these sections and items of clothing is up to you if you're actually doing this. Note the numbers after bindgroup though! We're going to be using them in just a second.
+
+//sakura.bindgroup51.name,face,glasses
+
+//kero.bindgroup55.name,face,glasses
+//kero.bindgroup57.name,hair,hairpins
+
+
+//Dress-Up Menu Organization
+//This sets up how the clothing appears in the dress-up menu. You can see the main character only has one item, while the second has two split by a dash. Note that it uses the same numbers defined above for each item.
+
+//sakura.menuitem0,51
+
+//kero.menuitem0,55
+//kero.menuitem1,-
+//kero.menuitem2,57

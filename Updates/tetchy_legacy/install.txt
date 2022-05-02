@@ -1,0 +1,13 @@
+﻿//This file tells SSP and possibly other ghost programs how to install your ghost when a user drags and drops the .nar file on an existing ghost.
+
+//The only thing you'll be changing here are name and directory. Replace "GT Ghost Template" with the name of your ghost that you defined in descript.txt, and replace "gt_template" with the name of the directory you've made for your ghost.
+
+charset,UTF-8
+type,ghost
+name,Legacy
+directory,tetchy_legacy
+
+
+//This tells the program what balloon your ghost will be using. You should only uncomment this line if you're bundling a balloon with your ghost. Meaning, inside your ghost folder, you have ghost, shell, and your balloon's folder (like z_simple, balloontime, newsreport). If your balloon folder in there, it will install with your ghost. If you do NOT have a balloon included with your ghost, then leave this line commented.
+
+//balloon.directory,z_simple

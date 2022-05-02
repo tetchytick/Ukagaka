@@ -1,0 +1,204 @@
+﻿//---------------------------Mouse Functions--------------------------
+//As you've probably guessed, this .dic file has to do with mouse functions. This includes the petting feature and what happens when you double click your ghost.
+//As a note, this .dic file isn't strictly necessary - I'm pretty sure you can just clear the file and it won't hurt your ghost any, it'll just make it so you can't pet or double click them. And if you're interested in only petting or double clicking one character, all you have to do is delete the chunks of code for the other character you want to be uninvolved. However, I'm assuming most people making ghosts want to make their ghosts pettable and clickable, so this will cover the messages for both.
+
+//Make sure to read the walkthrough page (http://www.ashido.com/ukagaka/walkthrough.html) for more details about how to properly format ghost dialogue!
+//I will reiterate that you should be editing these in Notepad++, and in particular, you should set the Language to C (or Java I guess) to properly highlight all the text. It will make things A LOT EASIER for you, trust me! It will also help you keep track of your brackets in case you forget some. If you click on a line with a bracket in Notepad++, it should highlight where the other bracket ends, or turn purple if there's no finishing bracket (which you should definitely fix!)
+//It will also highlight my commented lines in green, so you'll know where they are. Any line beginning with // is a commented line that the code will not read. It's just for your reference!
+
+
+//--OnMouseMove
+//This is a bunch of code determining who the mouse is over. Don't touch any of it.
+
+OnMouseMove
+ {
+		//---- reference3 determines the character in question
+		if reference3 == 0 //if the character is 0, aka the main character
+		{
+			//---- it will run the mouse functions for that character
+			MouseMoveSakura
+		}
+		else //if the character isn't 0, then it must be the side character.
+		{
+			//---- this will run the mouse functions for the side character.
+			MouseMoveKero
+		}
+ }
+ 
+ //*********************Advanced User Info*******************************
+//These text boxes are meant for those who have an interest in expanding or using more complicated functions in their ghost. Also for my own reference in the future since I plan on using this template too, haha. If you have no interest in any of this and just want to keep things as simple as possible, feel free to skip these boxes.
+
+//If you want to have more than two characters at any point, like for example how I added Charger with my Hunter/Smoker ghost, and you want to be able to interact with that character like you can with the others, you will have to add in that character to OnMouseMove above. You'll need to know the p[] you've assigned your third character to, which in Charger's case was 3. You can assign your third character any p you want, just be consistent about using the same p[] everytime. I touch on \p a bit more in the walkthrough.
+//So anyway, as you can see above, OnMouseMove determines who the user is touching, so you'll just have to add in an elseif checking for reference3 == 3, or reference3 == 4, or whatever p number is you're using. More on elseif in the walkthrough and in bootend.dic. After that, you'll just need to copy and paste the other mouse functions below and change the name as you need (for example, MouseMoveCharger, MouseDoubleClickCharger). 
+
+//Note though that the extra character will not be a hard-coded character like 0 and 1! You're basically tricking the program into thinking there's another character, and some functions in things like menu.dic and aitalk.dic won't work quite right if you put in a value other than 0 or 1, and you'll need to be careful about making sure to remove the third character when you're done. But luckily for you, this won't be a problem with any of the mouse functions as far as I'm aware, and you can fill them out for the third character just like you would for the two main ones.
+//***********************************************************************
+
+
+ //--MouseMoveSakura
+ //The petting function for your main character. Remember how it was referred to as sakura in some of the descript.txt and install.txt files?
+ 
+MouseMoveSakura
+ {
+	if reference4 != "" //ignore
+ 	{
+ 		stroke++ //if you move the mouse over the right areas, the stroke count will go up.
+ 		if stroke >= 40 //if the stroke count is above a certain number, the petting dialogue will kick in. You can change this number to make the petting take longer or shorter if you want. FLELEs have it set to 50 for some reason, which makes it take longer than this.
+		{
+ 			stroke = 0 //resetting the stroke count
+			if reference4 == "Head" //do you remember the names of the areas you set up for your collisions in surfaces.txt? This is where they come into play! This is where you'd put in the name of your collision, such as head, face, horns, tail, ears, whatever. As mentioned in surfaces.txt, you can add as many collisions to a pose as you want, as long as you make sure to add them all in here so they can actually be used.
+ 			{
+				"\0\s[102]Claws off.\e"
+				"\0\s[102]Um. Absolutely not.\e"
+				"\0\s[102]Do you have a death wish?\e"
+				"\0\s[102]Stay away from my horns.\e"
+				"\0\s[102]Keep your claws away from my ruff.\e"
+				"\0\s[0]I will b--\s[18] \w8sear your face off. With venom."
+				"\0\s[103]She shoos your talons away."
+				"\0\s[103]She looks unimpressed."
+				"\0\s[102]Don't touch me.\e"
+				"\0\s[102]What are you trying to do?\e"
+				"\0\s[102]Do you need something?\e"
+				"\0\s[1]She ducks away from your talons.\e"
+				"\0\s[1]She looks uncomfortable.\e"
+				"\0\s[102]Out of my space.\e"
+				"\0\s[18]Stop.\e"
+				"\0\s[18]Don't.\e"
+				"\0\s[18]Stop that.\e"
+				//Replace these with whatever petting responses you like. You can also add more dialogue here if you want, or cut them down. Though removing them entirely seems a bit counter-intuitive to all that work we've been doing.
+ 			}
+ 			elseif reference4 == "Face" //Another area set up by the collisions in surfaces.txt. You can expand this list with as many elseifs as you need depending on how many collisions you've set up.
+ 			{
+ 				"\0\s[15]This is very strange. \s[16]Even for you.\e"
+ 				"\0\s[15]What are you doing?\e"
+ 				"\0\s[102]Claws off.\e"
+				"\0\s[103]She looks unimpressed."
+				"\0\s[102]Out of my space.\e"
+				"\0\s[103]She shoos your talons away."
+				"\0\s[18]Don't touch me.\e"
+				"\0\s[18]Stop.\e"
+				"\0\s[18]Stop that.\e"
+				"\0\s[1]You reach for her snout, but she covers it.\e"
+				//Replace with appropriate dialogue as needed.
+ 			}
+			
+ 		}
+	}
+ 	else
+	{
+ 		// If the mouse isn't over the ghost, it'll zero out the stroke value.
+		stroke = 0
+ 	}
+}
+
+ //---- MouseMoveKero -----------------------------------------------------------------
+ //MouseMoveKero is exactly like the above, except set up for your second character. 
+ 
+MouseMoveKero
+ {
+	if reference4 != ""
+ 	{
+ 		stroke++
+ 		if stroke >= 40
+		{
+			stroke = 0
+			if reference4 == "Face" //Put in the name of your collision area you set up for your secondary character here.
+ 			{
+				"\1\s[10]This is a face touching dialogue.\e"
+				"\1\s[10]This is another face touching dialogue.\e"
+				"\1\s[10]This is yet another face touching dialogue.\e"
+				//Replace this dialogue with your secondary character's dialogue.
+ 			}
+			elseif reference4 == "Point" //Like above, put in the name of another collision you set up in surfaces.txt for the secondary character. You can keep adding more elseifs like this for any extra collisions you may have set up.
+			{
+				"\1\s[10]This is a point touching dialogue since I don't really have a head, being a triangle.\e"
+				"\1\s[10]This is another point touching dialogue.\e"
+				"\1\s[10]This is yet another point touching dialogue.\e"
+				//Replace this dialogue as appropriate.
+			}	
+ 		}
+	}
+ 	else
+	{
+ 		// If the mouse isn't over the ghost, it'll zero out the stroke value.
+		stroke = 0
+ 	}
+}
+
+//---- OnMouseDoubleClick -------------------------------------------------------
+//This is set up much like OnMouseMove above, except this is checking to see if the user is double clicking on the ghost. You also don't need to touch any of this. 
+//Advanced users adding a third character, the same principles from OnMouseMove apply here as well! Make sure to add an elseif with the right number for your third character.
+
+OnMouseDoubleClick
+ {
+	//---- like with the OnMouseMove function above, this determines who the user is clicking on.
+	if reference5 == 0 //checks which button is being used for the click
+	{
+	 	if reference3 == 0 //if the character is 0, aka your main character
+		{
+		MouseDoubleClickSakura
+		}
+		else
+		{
+ 		MouseDoubleClickKero
+		}
+	}
+ }
+
+ //---- MouseDoubleClickSakura ----------------------------------------------------------
+ //Like the petting animation above, this is the reactions they have to being double clicked. These also rely on the collisions you set up in surfaces.txt! This set is specifically for the main character, as indicated by the Sakura in the name again.
+ 
+ //*********************Advanced User Info*******************************
+ //As a note, double clicking on a certain area of your ghost doesn't have to be the user hitting them. You could instead set up a collision for a piece of clothing, and then have the character talk about that bit of clothing when it's double clicked, for example. One of Smoker's double clicks gives her a high-five when she's in a certain pose. Maybe double clicking is patting them, or pointing behind them, or tapping them, or any number of things. You can be creative here with how they respond depending on what areas you've set up as collisions!
+ 
+ //If you don't want your character to be hittable at all, you can just delete everything in MouseDoubleClickSakura except OpenSakuraMenu. So it'd look like
+ 
+ //MouseDoubleClickSakura
+ //{
+ //OpenSakuraMenu
+ //}
+ 
+ //That's all there is to it. This method also applies to the secondary character, Kero, below this set.
+ //***********************************************************************
+ 
+MouseDoubleClickSakura
+ {
+ 	//if reference4 == "Head" || reference4 == "Face" //here, this is checking to see if the user is double clicking on either the character's head OR their face, which for our purposes means they're hitting the ghost. More about operators at the walkthrough.
+	//{
+	//	"\0\s[0]This is the hitting dialogue.\w8\1\s[15]lol\w8\0\s[9]\n\n[half]Shut up.\e"
+	//	"\0\s[0]This is another hitting dialogue.\e"
+	//	"\0\s[0]This is yet another bit of text for hitting.\e"
+	//	"\0\s[0]This is the fourth hitting dialogue.\e"
+		//Replace this dialogue with appropriate dialogue as you need. You can add more or cut it down if you want, even down to nothing if you want no response from your ghost at all when those areas are double clicked.
+ //	}
+	//else
+ 	//{
+		//Otherwise, if the user doubleclicks somewhere else on the character, they will open their menu as detailed in menu.dic.
+ 		OpenSakuraMenu
+	}
+ 
+
+ 
+ //---- MouseDoubleClickKero -----------------------------------------------------------
+ //This is just the same as MouseDoubleClickSakura above, except for your secondary character. The same principles apply, including how to make your character unhittable.
+ 
+ 
+MouseDoubleClickKero
+ {
+ 	if reference4 == "Face" //Triangle doesn't have a separate head really, being a triangle, so this only happens if you doubleclick his face.
+	{
+		"\1\s[10]This is hitting dialogue.\w8\0\s[5]ha ha\w8\1\s[19]\n\n[half]Quiet.\e"
+		"\1\s[10]This is another hit dialogue.\e"
+		"\1\s[10]This is yet another hit dialogue.\e"
+		"\1\s[10]This is the fourth hitting dialogue.\e"
+		//Replace the dialogue here for the second character with whatever you want. What I said above about adding or trimming still holds here.
+ 	}
+	else //Otherwise if you click anywhere else on Triangle's body
+ 	{
+		OpenKeroMenu //This will open his menu set up in menu.dic.
+	}
+ }
+
+ //*********************Advanced User Info*******************************
+ //There are other mouse related functions you could set up much like the above, such as OnMouseDragStart, OnMouseDragEnd, OnMouseWheel, and others which correspond to various things you can do with your mouse. You can probably guess what those functions do just by their names - OnMouseWheel would be if someone spun their mouse wheel over a certain area, for example. If you're interested in these, I'd recommend doing some reading at the CROW-SSP Encyclopedia to get a better idea of them and settle down for some trial and error learning as you try to put them in.
+ //***********************************************************************

@@ -1,0 +1,851 @@
+﻿//---------------------------Menus--------------------------
+//This .dic file is primarily concerned with the double-click menus for each of your ghosts. If you don't want to have menus for your characters, you'd just have to delete the OnMouseDoubleClick functions near the end of mouse.dic and then ignore this file, as none of it will be called I believe. Menus can be cool though, since you can put stuff in them and create new functions if you know what you're doing. For example, I've added a lot of games and interactions and little linked icons to my Hunter Smoker ghost to keep track of their feelings and such. Much of that is pretty complicated though (and kind of messy, cough), so I won't go into it here, but I covered some of the concepts in the coding page of the walkthrough, and enterprising ghost makers can study the menu.dic file I set up for Hunter/Smoker and see how I put it together.
+//Anyway, menu.dic also contains the settings for a config menu that will let your user change their name or pronouns if they want, as well as the talk rate of the ghost, all of which are useful things for your ghost to do. So think hard about whether or not you want to skip this file or not.
+
+//The complexity of this file depends on how customized you want your menus. If you just want to leave them as they are, then all you'll have to do is replace dialogue appropriately. You can always add stuff to their menus later if you get the urge. Otherwise, if you have plans in mind, you'll need to study what's going on in here carefully and pay attention to how things are set up! You can do a lot of unique stuff in this file if you're creative.
+
+//Make sure to read the walkthrough (http://www.ashido.com/ukagaka/) for more details about how to properly format ghost dialogue!
+//I will reiterate that you should be editing these in Notepad++, and in particular, you should set the Language to C (or Java I guess) to properly highlight all the text. It will make things A LOT EASIER for you, trust me! It will also help you keep track of your brackets in case you forget some. If you click on a line with a bracket in Notepad++, it should highlight where the other bracket ends, or turn purple if there's no finishing bracket (which you should definitely fix!)
+//It will also highlight my commented lines in green, so you'll know where they are. Any line beginning with // is a commented line that the code will not read. It's just for your reference!
+
+
+//--OpenSakuraMenu
+//This is a bit of intro dialogue before the main character opens their menu. You can see below that there are three pieces of separate dialogue listed before it goes to MenuRun. The character will randomly choose one of those pieces of dialogue before opening the rest of their menu. You can customize this with individual greetings for the character, such as "Yes, %(username)?" or "Need something, %(username)?" or things like that. Note that none of the lines end with \e!
+//The \b2 tag tells the ghost to use their big balloon for this dialogue. If your menu has a lot of stuff, this'll probably look better than the small one.
+//If you don't want multiple responses before opening the menu, you can delete the dialogue and just leave MenuRun.
+
+
+OpenSakuraMenu
+{
+		"\0\s[15]\b2  Yes, what is it?"
+		"\0\s[0]\b2  I'm listening."
+		"\0\s[14]\b2  You talk too much."
+		"\0\s[14]\b2  What?"
+		"\0\s[16]\b2  If you insist."
+		"\0\s[15]\b2  What is it?"
+		"\0\s[17]\b2  Hmm?"
+		--
+		MenuRun
+}
+
+//--MenuRun
+//As you just saw above. This actually fills out the rest of the menu. If you're going to be adding or changing functions, this is where you'll be doing your edits.
+
+MenuRun
+ {	
+ 	wd = GetWeekDay
+ 	ap = GetAP
+	//These four statements basically get the day of the week, whether it's AM or PM, the hour, and the time. It's putting together the information to display the time at the bottom of the balloon. Pay it no mind.
+	--
+	"\n\n\_q\b2" //The \n\n means two new lines as detailed in the walkthrough, and \_q means quick session, meaning all the text from this point on will display instantly instead of a few letters at a time like normal ghost dialogue.
+	--
+	if lastTalk != "" //What this does is check to see if the ghost has already said a random bit of dialogue on its own, essentially by seeing if the lastTalk thing is NOT empty (!= means "does not equal").
+	{
+	  "\![*]\q[What was that again?,OnLastTalk]\n\n[half]"
+	  //If the ghost has said something, it will then display this menu option. You can replace "Repeat Last Dialogue" with whatever caption you like, such as "What were you saying?" or "What did you say?" or "Could you repeat that?" or something like that.
+	  
+	  //*********************Advanced User Info*******************************
+	  //These text boxes are meant for those who have an interest in expanding or using more complicated functions in their ghost. Also for my own reference in the future since I plan on using this template too, haha. If you have no interest in any of this and just want to keep things as simple as possible, feel free to skip these boxes.
+	  
+	  //I briefly touched in bootend.dic about \q, but I'll again cover it here. Pay very close attention to how this bit of dialogue is formatted. You'll see it goes \![*]\q[Displayed Name,linkedfunction]. Breaking it down, \![*] puts the balloon's option icon in front of the choice (usually a > or something), \q sets up the choice, Displayed Name which is the text that will display in the ghost's balloon, then linkedfunction, which is what the choice is linked to when the user clicks it. As you go through this file, look at how every menu option is set up, and you will see they all follow this format, give or take a \![*]. If you're going to be adding new options to menus or creating your own functions and such, make sure you follow this format and learn it well. Make sure to read the coding page of the walkthrough.
+	  //***********************************************************************
+	}
+	--
+	"\![*]\q[Let's chat!,OnAiTalk]\n\n\n[half]"
+	
+	//This option will force the ghost to say something from aitalk if the user clicks it. Just replace "Say something" and "Say something 2" with whatever captions you think would be appropriate for such an option. IF you don't want two options for captions, delete one of the lines.
+	//Advanced users, you can add multiple captions for any option you add to a menu you make just like this, as long as you separate it from the other options into its own section with two dashes above and below.
+	--
+	"\![*]\q[Questions,askquestion]\n\n/
+	\![*]\q[Action,doaction]\n\n/
+	\![*]\q[Item,giveitem]\n\n/
+	\![*]\q[Functions,dosomething]\n\n/
+	\![*]\q[Settings,configmenu]\n\n\n/
+ 	\![*]\q[Nevermind.,CANCEL]\n\n%(wd) %(nowhour):%(nowmin) %(ap), %(month)/%(day)/%(year)\e"
+	
+	//These three lead to the Config Menu, the Function menu, and Cancel. You can leave these alone if you like. All the envelopes at the end (see word.dic) basically display the year, month, day, weekday, and time.
+}
+
+//TETCHY MENU FUNCTIONS
+
+	Select.askquestion
+	{
+		"\b4\0\s[19](She looks attentive.)"
+
+		 "\b4\0\s[16]If you must."
+		 
+		 "\b4\0\s[13]Fine."
+
+		 "\b4\0\s[14]Go on then."
+
+		--
+		 "\w2\n\s[19](You ask her about..)\n\n"
+		--
+		"\![*]\q[RainWings,askrainwings]    \![*]\q[The rainforest,askrainforest]    \![*]\q[Royalty,askroyalty]\n\n/
+		\![*]\q[Herself,askherself]    \![*]\q[Horns,askhorns]    \![*]\q[Being Queen,askqueen]\n\n/
+		\![*]\q[Pyrrhia,askpyrrhia]    \![*]\q[History,askhistory]    \![*]\q[The rulers,askrulers]\n\n/
+		\![*]\q[The war,askwar]\n\n\n[half]/
+		\![*]\q[Nevermind.,BACKTOMENU]\e"
+		//\![*]\q[Example2,talkaboutexample2] etc//
+	}
+	
+	Select.giveitem
+	{
+		"\b4\0\s[22]I don't want your garbage,\w4 thanks.\w8\w8\n\n\_q"
+		--
+		"(This menu will be available in future updates.)"
+		--
+		"\n\n\n\n/
+		\![*]\q[Back,BACKTOMENU]\e"
+	}
+	
+//QUESTIONMENURESPONSES
+
+	Select.askrainwings
+	{
+	"\0\s[16]The strongest tribe. \s[15]Some dragons like to brush us off as lazy or docile, but we always prove them wrong."
+	"\0\s[0]I'm a RainWing. Haven't you ever seen one before?\n\s[18]They look like me."
+	"\0\s[17](She looks hesitant, as if she's not sure how much to reveal.)\n\w8\w8\s[14]..We're stronger than we look."
+	"\0\s[0]We used to be nothing more than slothful pacifists.\w8 Then Queen Harpy came along, \w4and she changed everything.\w8\s[20]\nI'm not sure I'll ever measure up to her."
+	"\0\s[0]Many of us consider Queen Harpy to be our founder. \s[15]The history before that is irrelevant.\w4.\w4. \s[14]and hardly legible."
+	"\0\s[19](You ask her if RainWings can breathe fire.)\w4\n\n\s[15]Why would rainforest dragons need fire? \s[16]\w4Firebreathing is a detriment, really."
+	"\0\s[23]Every tribe has their strengths, but we have them all. Flight, combat, speed, strength, whatever it may be.\n(She pauses..)\w8\w8\w8\n\s[18]Except for fire."
+	"\0\s[23]As great as ever. We have an extensive array of weaponry. My favorite are the toxin blowdarts--\s[8]I wonder what makes those frogs so potent.\w4.\w4?\w8\w9\n\s[3](She trails off and winces,\nas if realizing she shouldn't\nbe telling you about this.)"
+	"\0\s[0]The village has been bustling with dragonets lately. \s[16]They'll be starting training before long."
+	"\0\s[19](You ask her about what RainWings can do.)\n\s[14]\w8\nWhat do you mean?\w4 Surely you've heard about us before? \w8Well,\w4 if I \s[16]must be the one to enlighten you.\n\s[23]\w4RainWings have a wide variety of redeeming qualities.\w8\w8\n\nWe have long claws and prehensile tails, expressive ruffs, and we can shift the color of our scales. We are incredibly useful in battle.\n\w4\s[20]King Noctua is lucky to have us on his side."
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+
+	Select.askrainforest
+	{
+	"\0\s[15]Our home. It feeds us, shelters us, and takes care of us. \s[16]I don't know why anyone would want to live anywhere else."
+	"\0\s[14]One must always know where to put their talons when navigating the rainforest. The other tribes amble about so mindlessly.\w4.\w4\n\s[20]No wonder they are the way they are."
+	"\0\s[0]Our village is one of the most protected on the continent.\n\s[6]It's nestled so deep in the jungle that outsiders often get lost trying to find it."
+	"\0\s[14]Are you trying to glean information from my responses?\w4 Well, I won't tell you anything worth remembering.\w4\n\s[20]You'll never find the village."
+	"\0\s[0]Our dragonets wander off into the jungle sometimes.\w4\n\s[23]Almost getting eaten by tigers is a right of passage, if you ask me."
+	"\0\s[0]The rainforest is covered in all kinds of fruits. If you ever decide to trespass, \s[15]make sure you eat all the vibrant, spiky-looking ones."
+	"\0\s[9]She's pretending she can't hear you."
+	"\0\s[12]We found a SandWing hybrid deep in the rainforest the other day.\n\s[20]\w8She's been\w4.\w4.taken care of."
+	"\0\s[20]She looks reminiscent. Perhaps she's missing home."
+	"\0\s[23]You're not getting much information out of me,\w3 if that's what you're looking for.\s[16] Not that it matters. \s[15]You would never find your way to the village."
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askroyalty
+	{
+	"\0\s[21](She looks uncomfortable.)"
+	"\0\s[17](She pretends not to hear you.)"
+	"\0\s[0]Just like the other tribes, the RainWing royals do what they can to keep everyone in order."
+	"\0\s[0]Princess Raina is a good leader.\s[18] She'll be a great queen someday."
+	"\0\s[16]I have no doubt that the RainWings are in good talons."
+	"\0\s[15]Our challenges are slightly less violent than the ones you might find in the other tribes.\s[16]\w8\nI plan to--\w8\s[14]\w8\w4\s[17] .\w4.Nevermind."
+	"\0\s[6]It's good to see young dragons challenging their way into the ranks. \s[0]The RainWings can always use more passion."
+	"\0\s[22]I don't know why it matters to you, but it's in your best interest to keep your snout where it belongs."
+	"\0\s[19](You ask her what kind of royal challenges the RainWings do. For once, she actually looks interested.)\w8\w8\s[20]A royal dragon and their challenger can decide on whatever challenge they'd like. \w3Racing, scavenging, academia, debate..\w4Anything. \w8\n\s[18]Battle challenges, however, are a bit.\w4.\w4controversial. To say the least."
+	"\0\s[19](You ask her if she thinks you'd make a good royal.)\n\n\w8\s[16]I hardly know you. \w8\s[14]How do you expect me to answer that?"
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askherself
+	{
+	"\0\s[19](You ask her to tell you about herself.)\w8\n\n\s[23]I'm a RainWing.\s[24]\w8\n\n(You tell her she's avoiding the question.)\n\w8\s[13](She glares at you.)"
+	"\0\s[20]There's nothing to say."
+	"\0\s[17](She looks uncomfortable.)"
+	"\0\s[14]I'd be doing better if I weren't here.\w8\n\n\s[13](You tell her you weren't asking how she's doing.)\s[8]\n\w8(..She just looks confused.)"
+	"\0\s[6]I have a pet fruit bat.\w4 His name is Horns.\w4\s[14] I miss him very much and I hope he never has the displeasure of meeting you."
+	"\0\s[9]She's uninterested."
+	"\0\s[15]Why do you want to know about me?\w4 I don't want to know about you."
+	"\0\s[14]What's the point in making small talk? \w4\s[16]I'm only enduring your pestering so I can go home."
+	"\0\s[18]I'm not as interesting as you seem to think I am."
+	"\0\s[102]If you must know, I am a civilized dragon who does not like being pet."
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askhorns
+	{
+	"\0\s[23]Horns is my pet fruit bat. I miss him."
+	"\0\s[23]Horns is a good boy. \w4\s[8]I hope I can find some fresh fruit on my way home.."
+	"\0\s[6]Horns is my fruit bat. He's a very hungry boy."
+	"\0\s[23]Horns and I like the same fruits. I quite like peaches myself."
+	"\0\s[0]I found Horns when he was just a baby bat. \w8He fell out of a tree during the--\w8\w8\n\s[21].\w4.Nevermind."
+	"\0\s[3]I hope he's okay back in the rainforest.\w4 He always goes off on his own,\w3 but I won't be there if something happens.. \s[13]\w8\n\n(She's glaring at you.)"
+	"\0\s[0]My pet fruit bat. \s[23]I love him very much."
+	"\0\s[0]I read in a scroll the other day that tree bark is good for fruit bats. \w4\s[15]When I tried feeding Horns some,\w3 he got upset and flew into a wall. \w8\s[16]He's fine,\w3 though.\w4\s[6]\nHe's tough."
+	"\0\s[0]I never thought I'd want a pet.\w4\s[12] The sloths around the village creep me out. \n\w4\s[6]Horns is special,\w3 though."
+	"\0\s[0]Horns likes to fly with me sometimes. He's quick, too. \w8\s[8]I wonder if there are enough pet bats in the village for a race?"
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askqueen
+	{
+	"\0\s[19](You ask her if she likes being queen.)\s[4]\w8\n\n..She looks extremely uncomfortable."
+	"\0\s[22]I'd rather not discuss my status, thank you."
+	"\0\s[21](She tries to ignore you,\w4 so you repeat yourself.)\n\n\w4\s[7]Keep your snout out of my business."
+	"\0\s[17](She flicks her tail dismissively.)"
+	"\0\s[20](She refuses to acknowledge you.)"
+	"\0\s[16]I have no idea why you're so interested in my life.\n\n\w4\w8\s[13](You tell her she's deflecting.)\n\w8\s[20](She ignores you.)"
+	"\0\s[18]Princess Raina will make a great queen someday.\n\n\w8\w8\s[26](You ask her about Princess Raina.)\n\n\w4\w8\s[21]\w8\w8\w8\s[4]\w4.\w4.\w4."
+	"\0\s[17](You ask her how she became royal.)\n\n\w4\w8\s[21]\w8\w8\w8\s[4]\w4.\w4.\w4."
+	"\0\s[17](You ask her about the ruler before her.)\n\n\w4\w8\s[20]Ruler Fog is a good dragon.\n\n\w8(You ask why she challenged them.)\n\n\w8\w4.\w4.\w4.\s[21]"
+	"\0\s[17](You ask her if she likes being queen.)\n\n\w8\w8\w8\s[20].\w4.\w4I do what I have to."
+	"\0\s[22]I'm not interested in a discussion about my status."
+		--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askpyrrhia
+	{
+	"\0\s[0]I visited.\w2.\w2a friend.\w2.\w2in IceWing territory the other day. \s[23]I quite like the cold."
+	"\0\s[0]Jade Mountain Academy has been in shambles lately. King Bog is too busy tending to the War to worry about being a Principal. \s[16]I respect his versatility."
+	"\0\s[15]I heard some new construction has started on the NightWing peninsula. \s[16]Perhaps they'll finally get a palace."
+	"\0\s[0]A few RainWings flew out to Sediment Canyon the other day to pick up some new imports. \s[16]Crossing over Claws of the Clouds is never pleasant."
+	"\0\s[0]I heard Possibility is expanding again. \w4\s[14]It seems the SandWings are always expanding."
+	"\0\s[0]My friend Jauari approached me the other day with a flyer for Skyfire Academy. \s[7]With current affairs, no RainWings are going to be attending a SkyWing academy anytime soon."
+	"\0\s[0]I had to go on an expedition to Serpent's Reach the other day.\w4\s[18] I hate getting my scales wet."
+	"\0\s[8]I heard some news about a strangely colored HiveWing sneaking around Scorpion Den. \s[16]How curious."
+	"\0\s[0]Have you heard about the Association of Scavenger Safety?\w8 I may be a vegetarian, \w3\s[22]but it seems a little excessive to me."
+	"\0\s[19](You start talking about Pantala..)\s[9]\w8\w8\n(She's not interested.)"
+		--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askhistory
+	{
+	"\0\s[0]Do you remember that catastrophe at Jade Mountain Academy a few seasons back?\n\s[9]They had to rebuild the whole thing.."
+	"\0\s[15]I heard the Eye of Onyx went missing for a while. \s[8]If I remember correctly, it hasn't been lost since being dug up by a scavenger around 6,000 years ago."
+	"\0\s[24]History and English are my favorite subjects. I'd like to write a few scrolls on Pyrrhian history someday."
+	"\0\s[15]I read that the NightWings are still recovering from the Titan Pact/Hurricane War. \s[16]Given their lack of land, I'd say they don't have much room for error."
+	"\0\s[14]Are you quizzing me? \n\w8\s[22]I assure you,\w4 \s[23]I know more about Pyrrhia's history than you do."
+	"\0\s[0]Have you ever read about the first SkyWing animus? There's quite a bit of debate over whether or not Vahni was a real dragon."
+	"\0\s[0]Have you read the \n\f[italic,true]Pyrrhian Studies\f[italic,false] series?\s[23]\nIt's one of my favorites. Quite descriptive."
+	"\0\s[0]Did you know that Jade Mountain Academy used to be somewhere else in the mountains? \w4\s[15]Some negligent queen accidentally moved it with animus magic.\w4\s[22]\nFar too much power for one dragon, if you ask me."
+	"\0\s[0]I think I'm going to open a library someday. \s[8]There's already so much to document.."
+	"\0\s[23]Harpy Heights is my favorite part of RainWing culture. \w4It's a beautiful coastal city named after the tribe's founder,\w2 Queen Harpy.\w2 You should read about her."
+		--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askrulers
+	{
+	"\0\s[0]King Bog has been MudWing ruler twice now. \s[8]He sure is persistent.."
+	"\0\s[0]King Bog is perhaps the most agreeable out of the Firebound Alliance, \s[6]it's too bad he's a MudWing.."
+	"\0\s[0]Queen Agave recently took up a desert-lighting project. \s[8]I heard you could see the flames from as far as the mountains."
+	"\0\s[0]Queen Providence and her heir have been working on some new NightWing architectural projects. \s[8]I'd like to visit them for myself, but I don't think I'm welcome in enemy territory."
+	"\0\s[0]Queen Providence is a strange dragon, both physically and verbally. \s[16]I admire how bold she is." 
+	"\0\s[16]King Noctua is a good dragon. \s[22]If only he weren't such a pushover. \s[0]The other day I asked him to get me some parchment so I could jot something down,\w3 but he didn't have any.\w8\n\s6He gave me an expensive seal's pelt quilt to write on instead.."
+	"\0\s[16]King Noctua always gets excited when any of his allies visit the Palace. Apparently Ruler Moss and her SeaWings aren't interested in flying across the continent to see him. \w4\s[9]Unfortunately, the RainWings are only slightly closer.\n\w4It would be endearing if it weren't so annoying."
+	"\0\s[14]Vulture has been a pain in the tail lately.\w4\s[16] Moreso than usual.\w4\n\s[14]A few nights ago the village was delivered a shipment of flyers for SkyWing voting season.\s[23]\nIf I didn't know any better,\w3\s[16] I would guess he was trying to get a few RainWings to turn their scales red and show up to the polls for the promised reward."
+	"\0\s[0]Did you know that Ruler Moss is the longest-term SeaWing ruler in recent memory? \s[15]She must be twice my age. \s[16]Certainly doesn't look it, though."
+	"\0\s[23]As much as I don't care about looks, Queen Agave is a beautiful dragon. \s[22]If only she had goals besides putting lanterns all over the desert."
+	"\0\s[15]Ruler Moss is fairly confident that our alliance will win this war..\w4\s[16]\nI can't say I agree, \w4\s[3]especially after that conversation about possible alliance names.."
+	"\0\s[14]Vulture is--\n\n\w8\s[13](You tell her that it's actually 'Fire Lord' Vulture.)\n\n\w8\s[9]She rolls her eyes."
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+	Select.askwar
+	{
+	"\0\s[0]The Firebound Alliance is led by the SkyWings. \s[14]Their allies are the SandWings, NightWings, and MudWings."
+	"\0\s[0]The Frozen Lotus alliance is led by the IceWings. \s[23]Their allies are the RainWings and SeaWings."
+	"\0\s[0]Vulture had a banquet not long ago and nearly got skewered with a diamond-tipped spear. \s[6]That would have been an entertaining end to the history scroll."
+	"\0\s[23]I recently attended a meeting held by the IceWing heir Blizzard. \s[15]It was a disaster. \s[20]I watched my alliance leader get dragged by the tail across the floor."
+	"\0\s[14]Since you seem to live under a rock,\w2 I'll tell you about the war. \w4\nThe SkyWings and IceWings are fighting over some old animus relic. \s[23]It's not really relevant to the RainWings at all, \s[16]but we had to join up with King Noctua and his IceWings to avoid getting obliterated in the crossfire."
+	"\0\s[14]The IceWings and SkyWings just had to make their centuries-old feud everyone's problem. \w4\s[16]Typical."
+	"\0\s[23]Ruler Moss is much more eager than I am to assist the IceWings. \w4\s14The RainWings would've stayed out of it if we'd had a choice, \w3\s[15]but it's quite hard to avoid thousands of enraged fire-breathing dragons all across the continent."
+	"\0\s[22]It's just fantastic that my alliance leader lives on the complete opposite side of the continent. \w4\s[23]I'm just enthralled by the idea of flying for three days straight to have meetings over absolutely nothing at all."
+	"\0\s[14]It's all I hear about anymore. \s[7]'Vulture did this!'\w3 'Vulture did that!'\w4 I don't care what Vulture did.\w4\n\s[16]Unless he died horribly and tragically. \s[6]That would be pretty newsworthy."
+	"\0\s[14]The IceWings and SkyWings are fighting over this useless crystal heart. \w4\s[7]They don't even know what it does! \w5\s[16]Unbelievable.\w5\n\s[15]I'm going to start a war over stupid dragons being born."
+	"\0\s[15]I wish the MudWings would have chosen to ally with the IceWings. \w2King Bog keeps making Vulture celebratory pastries, \s[16]and we don't get any."
+	"\0\s[15]RainWing Heir Fog was recently tasked with leading an expedition to check out the cave where the animus relic resides. \s[16]Maybe then the IceWings and SkyWings will stop bickering endlessly over it.\w8\nI have a lot of faith in Fog, especially because he was ruler just before me."
+	"\0\s[14]\_a[https://www.youtube.com/watch?v=2xiw9CPg04I]The Frostburn War\_a has been going on for quite some time now. \s[16]It's only a matter of time before proper battles start to break out."
+	--
+	"\n\n\w4/
+	\![*]\q[Ask another question.,askquestion]\e"
+	}
+	
+//DOACTION MENU
+
+	Select.doaction
+	{
+		"\b4\0\s[19](What will you do?)\n\n\n[half]"
+		--
+		"\![*]\q[Praise,actpraise]    \![*]\q[Discuss,actdiscuss]    \![*]\q[Insult,actinsult]\n\n/
+		\![*]\q[Sing,actsing]    \![*]\q[Vent,actvent]\n\n/
+		                                               \![*]\q[Introduce Yourself,configmenu] \n\n\n\n/  
+		\![*]\q[Nevermind.,BACKTOMENU]\e"
+	}
+	
+	Select.actpraise
+	{
+	"\0\s[19](You tell her she's doing a \s[26]good job.)\n\w8\s[21](She looks embarrassed.\w2.)"
+	"\0\s[19](You tell her she's a great queen.)\w4\n\n\s[15]How would you know?\s[23]\w3 Don't try to flatter me."
+	"\0\s[19](You tell her you're proud of her.)\n\n\s[15]For what?\w4 I didn't do anything."
+	"\0\s[26](You tell her that she makes you happy.)\n\n\w6\s[15]What?\w3\s[16] Why?"
+	"\0\s[19](You tell her that she has \s[13]pretty scales.)\n\n\w6\s[22]I don't need your flattery, thank you."
+	"\0\s[17](You tell her she's a good dragon.)\s[17]\n\n\w4.\w4.\w4.\s[20]You don't know me."
+	"\0\s[13](You tell her you enjoy her company.)\w4\n\n\s[15]Why?\w3 I've given you no reason to."
+	"\0\s[19](You tell her she's very smart.)\n\w8\s[21](She just looks uncomfortable.\w2.)"
+	"\0\s[19](You tell her she's the strongest RainWing \s[13]you know.)\w4\n\n\s[14]Do you even know any other RainWings?\w4\s[16] If you have something rude to say, say it directly."
+	"\0\s[19](You tell her she takes very good care of her pet fruit bat.)\w6\n\n\s[23]That is quite right, I do.\n\w8.\w4.\w4.\s[8]Wait, how did you know that?"
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	
+	Select.actdiscuss
+	{
+	"\0\s[19](You try to discuss the \s[9]weather.)\n\n\w6(.\w4.She's uninterested.)"
+	"\0\s[13](You tell her you've never seen scale colors like hers.)\n\w8\s[21](She just looks uncomfortable.\w2.)"
+	"\0\s[19](You ask her what she thinks King Noctua is doing right now.)\n\n\w4\s[8]Hmm..\w2 I don't know. \s[16]Nothing productive, probably."
+	"\0\s[19](You tell her a story about a group of five dragonets saving the continent.)\w6\n\s[20](She seems to be listening.)"
+	"\0\s[19](You tell her a story about wild cats fighting.)\w8\n\s[20](She seems thoughtful..)\w8\n\n\s[15]What's a cat?"
+	"\0\s[19](You ask her what she thinks about Pantala.)\w8\n\s[9](She doesn't seem interested..)"
+	"\0\s[13](You ask her how she thinks the war is going.)\w8\n\n\s[16]It would be better if I \ndidn't have bumbling dragonets for allies.\s[6]"
+	"\0\s[13](You ask her if she's done anything fun lately.)\w7\n\nNo. \s[23]All of my time has been occupied with humoring you and trying to get coherent thoughts out of my allies."
+	"\0\s[19](You tell her about a scroll you read the other day.)\w6\n\s[20](She seems to be invested.)"
+	"\0\s[19](You tell her about the Legend of Darkstalker.)\n\n\w8\s[25]You know that one? \w6\s[23]That's one of my favorites."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	
+	Select.actinsult
+	{
+	"\0\s[13](You tell her that RainWings are the weakest tribe.)\n\n\w8\s[7]What do you know?\w4 RainWings are.\w4.\w4.\w4 \s[22]Nevermind. It'd be lost one someone as dull as you."
+	"\0\s[13](You tell her that she's a \s[26]liar and a thief.)\n\n\w8\s[27]\w8\w8\w8\s[4]\w4.\w4.\w4."
+	"\0\s[13](You tell her that her tribe would be better \s[26]off without her.)\n\n\w8\w8\s[21]\w4.\w4.\w4."
+	"\0\s[13](You tell her that you know \s[26]what she did.)\n\n\w8\w8\s[21].\w4.\w4.You're just trying to get to me.\w4\s[22] I won't allow it."
+	"\0\s[19](You tell her that you know RainWing scales change colors.)\n\n\w8\s[13]Yes, and what about it?\n\n\w8\w8(You tell her you think it's weird how \s[26]her scales never do.)\w8\w8\s[27]"
+	"\0\s[19](You tell her that \s[26]she's weak.)\w8\w8\n\n\s[18]\w4.\w4.\w4.You don't know me.\n\n\w8\s[13](You tell her that you don't have to.)\n\n\w8\w8\s[27]\w4.\w4.\w4."
+	"\0\s[19](You tell her that she doesn't \s[26]deserve to go home.)\n\w8\w8\s[4]\w8(She looks defeated.)"
+	"\0\s[19](You tell her her wings look strange.)\n\w8\s[21](She just looks uncomfortable.)"
+	"\0\s[13](You tell her that her horns are a strange shape.)\n\w8\s[9](She's ignoring you.)"
+	"\0\s[19](You tell her that you know she's not a \s[26]regular RainWing.)\n\n\w8\w4.\w3.\w3.\s[27]You don't know what you're talking about."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	
+	Select.actsing
+	{
+	"\0\s[19](You sing a song about a group of dragonets coming to save the day.)\w4\w4\n\s[8](She looks like she's heard the tune somewhere before.)"
+	"\0\s[19](You sing a song about Jade Mountain.)\n\w4\s[20](She sways along.)"
+	"\0\s[19](You sing a song about swans.)\n\n\w8\w5\s[15]What song is that?\n\n\w8\w5\s[13](You don't know how to answer that..)"
+	"\0\s[20](You hum a song about fruit bats.)\n\w4\s[6](She looks pleased.)"
+	"\0\s[20](You hum a few notes of a song.)\n\n\w8\s[16]I bet Noctua would like that one."
+	"\0\s[19](You sing a song about secrets hidden in an ancient book.)\n\w8\s[9](She's not interested..)"
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	
+	Select.actvent
+	{
+	"\0\s[19](She's listening.)\w4\n(You tell her..)\![open,inputbox,OnVent,-1]\e"
+	"\0\s[19](She looks interested.)\w4\n(You tell her..)\![open,inputbox,OnVent,-1]\e"
+	"\0\s[8]What is it?\w4\n\s[19](You tell her..)\![open,inputbox,OnVent,-1]\e"
+	}
+	
+	OnVent
+	{
+		reference0 = TOLOWER(reference0)
+		reference0 = REPLACE(reference0,"'","")
+		
+	if reference0 == "im sad"
+	{
+	"\0\s[23]\w4You won't be sad forever. \s[15]It will be alright.\e"
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	else
+	{
+	"\0\s[19]\w4(She listens without interruption. \w4..\s[20]For once, she looks understanding.)"
+	"\0\s[22]\w4I'm sure that whatever is going on won't last forever. \s[23]You will be fine, in time."
+	"\0\s[24]\w4(She considers what you said thoughtfully.)"
+	"\0\s[23]\w4I know how that must feel.\n\s[15]It will be alright."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	}
+	
+	
+
+//Leave this alone
+//act menu where you can be nosy
+OnLastTalk 
+{
+"%(lastTalk)\e"
+}
+
+//This is figuring out what day of the week it is. Leave it alone.
+GetWeekDay
+{
+	if weekday == 0
+	{"Sun"}
+	elseif weekday == 1
+	{"Mon"}
+	elseif weekday == 2
+	{"Tue"}
+	elseif weekday == 3
+	{"Wed"}
+	elseif weekday == 4
+	{"Thu"}
+	elseif weekday == 5
+	{"Fri"}
+	else
+	{"Sat"}
+}
+
+//This is finding out whether it's AM or PM. Leave it alone.
+GetAP
+{
+ 	if hour >= 0 && hour <= 11
+ 		{"AM"}
+ 	else
+ 		{"PM"}
+}
+
+nowhour
+{
+	if hour12 == 0; "1"
+	else; "%(hour12)"
+}
+
+nowmin
+{
+	if minute >= 0 && minute <=9; "0%(minute)"
+	else; "%(minute)"
+}
+
+
+//If someone selects an option linked to BACKTOMENU, it will go back to MenuRun.
+//Advanced users, note that this is formatted as Select.linkedfunction? Remember how it went \q[Displayed Name,linkedfunction] above? When a user clicks an option that doesn't begin with On, they'll be linked to Select.linkedfunction. Pay close attention as we go through and you'll see this in action.
+
+Select.BACKTOMENU
+	{
+		MenuRun
+	}
+
+//If someone selects configmenu, this will lead to TalkConfig.
+Select.configmenu
+	{
+		TalkConfig
+	}
+
+//*********************Advanced User Info*******************************
+//Some of you may be wondering why some of these Select.options lead to another function. Why not just put the config menu coding under Select.configmenu, instead of linking to TalkConfig?
+//Basically any function that's preceded with Select. is limited in its complexity and can only be called within its own .dic file in my experience. Why should you care, you ask? Well, if you're going to link to this function any other way, such as linking it in other .dic files or as a page in a menu, it needs to be a stand-alone function so it can be properly called. I'm pretty sure.
+//The basic jist is this; if you're going to reuse whatever it is the option leads to, you should make it its own function. Otherwise, you can leave it in Select.option. As a rule of thumb I'd probably put any complicated stuff in its own function, then use the Select.option to call the full function as you can see above. Simple dialogue responses to a choice can stay as a Select.option though (Like "Do you like going to raves and partying? Yes/No"). Study what stays as a Select.option and what links to another Function as we go through the file.
+//***********************************************************************
+
+//--TalkConfig
+//This menu allows the user to change their name and other information, as well as put in their birthday and change how often the ghost speaks. You can restructure how this looks if you want, but it's perfectly functional as is. You can of course change the dialogue though if you like.
+
+TalkConfig
+{
+	"\0\b[4]\_q\" 
+	//This bit of dialogue sets up a large balloon and a quick session, like above, so all the text will appear immediately. The rest is formatted to display the information and options to change it. I wouldn't touch any of it if you don't know what you're doing.
+	//I'll briefly explain the font tags I used here. \f[bold,1] turns bold on, \f[bold,0] turns it off, not unlike a <b> tag. \f[sup,1] turns superscript on (making it tiny and above the text) and \f[sup,0] turns it off. I touch on these tags in the walkthrough on SakuraScript.
+	--
+	"f[bold,1]Your name:\f[bold,0] %(username) \f[sup,1](\q[Change it?,TEACHNAME])\f[sup,0]\n\n"
+	--
+	"\f[bold,1]Your pronouns:\f[bold,0] %(heshe)/%(himher)/%(hisher) \f[sup,1](\q[Change them?,TEACHPRONOUN])\f[sup,0]\n\n"
+	--
+	"\f[bold,1]Your birthday:\f[bold,0] %(birthdayprint) \f[sup,1](\q[Change it?,TEACHBDAY])\f[sup,0]\n\n"
+	--
+	"\f[bold,1]Talk Rate:\f[bold,0] - every %(talktime) \f[sup,1](\q[Change it,talkinter])\f[sup,0]\n\n"
+	--		
+		{
+		"\![*]Uninstall? (NOW : %(deleteshitai))\n\q[ON,deleteon] \q[OFF,deleteoff]\n\n\n"
+		}
+	--
+	"\![*]\q[Back to the menu,BACKTOMENU]\e"
+}
+
+//This and the next few set up the pronouns, as you can see by the linkedfunction names. You can replace "\0\s[0]What pronouns do you want?" with your own dialogue if you prefer, but leave the rest of it alone.
+
+Select.TEACHPRONOUN
+{
+	"\0\s[0]What pronouns do you use?\w5\n\n[half]\_q/
+		\![*]\q[He/Him/His,choicemasc]\n/
+		\![*]\q[She/Her/Hers,choicefem]\n/	
+		\![*]\q[They/Theim/Theirs,choiceneither]\e"
+}
+
+Select.choicemasc
+{
+	presuffix = "masculine"
+	himher = "him"
+	heshe = "he"
+	hisher = "his"
+	hesshes = "he's"
+	--
+	"\0\s[0]The pronouns are now set to he/him.\e"
+	//Leave the part above the double dashes alone. You can replace the snip of dialogue however with whatever you like.
+}
+
+Select.choicefem
+{
+	presuffix = "feminine"
+	himher = "her"
+	heshe = "she"
+	hisher = "her"
+	hesshes = "she's"
+	--
+	"\0\s[0]The pronouns are now set to she/her.\e"
+	//as above, you can also replace this dialogue.
+}
+
+Select.choiceneither
+{
+	presuffix = "undefine"
+	himher = "them"
+	heshe = "they"
+	hisher = "their"
+	hesshes = "they're"
+	--
+	"\0\s[0]The pronouns are now set to they/them\e"
+	//and this one.
+}
+
+//Here are some examples of these envelopes in use.
+//"%(heshe) left that there."
+//"%(hisher) work is really cool."
+//"I'll ask %(himher) later."
+//"%(hesshes) really good at it."
+
+
+//These two options toggle whether or not you can delete your ghost. Leave them alone.
+
+Select.deleteon
+{
+	deleteshitai = "ON"
+	TalkConfig
+}
+
+Select.deleteoff
+{
+	deleteshitai = "OFF"
+	TalkConfig
+}
+
+
+//This next set of functions handles inputting the user's birthday.
+
+Select.TEACHBDAY
+	{	
+		"\0\s[0]What month were you born? \w8Name or number is fine.\![open,inputbox,OnUserBornMonth,-1]\e"
+		
+		//You can replace the dialogue up to the \![open,inputbox,OnUserBornMonth,-1] tag, leave that alone. You'll need the input box to get the information.
+		
+		//*********************Advanced User Info*******************************
+		//I also touched on this in bootend.dic and explained it in the walkthrough page on coding, but I'll also go into it here. I'm going to break down the tag there at the end of the sentence so you know what it's doing. Basically, \! means a function is going to happen, open tells it to open something, inputbox tells it to open an input box, and OnUserBornMonth is the function the input box will be linked to, which is just below here. -1 means the input box should not time out. If you want to add input boxes to some new function for whatever reason, you should follow this basic format.
+		//On a related note, you can raise any function at the end of any piece of dialogue by using this format - \![raise,InsertFunctionName]. This can be handy for testing things if the function is hard to get to run otherwise.
+		//***********************************************************************
+	}
+
+//--OnUserBornMonth
+//This takes the value that the user put into the input box above and evaluates it. Most of this you won't have to touch, but I'll explain what it's doing anyway. I'll point out where you can change the dialogue.
+
+OnUserBornMonth
+{
+	_tempmonth = TOSTR(reference0) //this stores what the user put in as a variable called _tempmonth
+	_tempmonth = TOLOWER(_tempmonth) //changes it to lowercase
+	
+	//this is attaching the right value to the input from the user
+	if _tempmonth == "january" || _tempmonth == "1" {bornmonth = 1; bornmonthprint = "January"}
+	elseif _tempmonth == "february" || _tempmonth == "2" {bornmonth = 2; bornmonthprint = "February"}
+	elseif _tempmonth == "march" || _tempmonth == "3" {bornmonth = 3; bornmonthprint = "March"}
+	elseif _tempmonth == "april" || _tempmonth == "4" {bornmonth = 4; bornmonthprint = "April"}
+	elseif _tempmonth == "may" || _tempmonth == "5" {bornmonth = 5; bornmonthprint = "May"}
+	elseif _tempmonth == "june" || _tempmonth == "6" {bornmonth = 6; bornmonthprint = "June"}
+	elseif _tempmonth == "july" || _tempmonth == "7" {bornmonth = 7; bornmonthprint = "July"}
+	elseif _tempmonth == "august" || _tempmonth == "8" {bornmonth = 8; bornmonthprint = "August"}
+	elseif _tempmonth == "september" || _tempmonth == "9" {bornmonth = 9; bornmonthprint = "September"}
+	elseif _tempmonth == "october" || _tempmonth == "10" {bornmonth = 10; bornmonthprint = "October"}
+	elseif _tempmonth == "november" || _tempmonth == "11" {bornmonth = 11; bornmonthprint = "November"}
+	elseif _tempmonth == "december" || _tempmonth == "12" {bornmonth = 12; bornmonthprint = "December"}
+	
+	else //if the month isn't a valid month, like 32 or something.
+	{
+			"\0\s[0]That's not a valid month. Try again."
+			--
+			"\![open,inputbox,OnUserBornMonth,-1]\![set,balloontimeout,-1]\e"
+			
+			//You can replace this dialogue in the first line. You need to leave the tag for the input box so they can put in a correct month. That last tag there for ![set,balloontimeout,-1] makes it so the input box won't time out if the user takes too long.
+	}
+	--
+	//If it's a valid month
+	
+	"\0\s[0]So you were born in %(bornmonthprint).\n\w8What day was it?"
+	--
+	"\![open,inputbox,OnUserBornDay,-1]\![set,balloontimeout,-1]\e"
+	
+	//Here you can see the use of a bornmonthprint envelope to show the user what month they put in. Notice that it opens an inputbox at the end the same way the one above did. You can replace the dialogue in the first line just as with above.
+}
+
+//This adds an appropriate suffix to the number for the day. No need to mess with this.
+
+Printday
+{
+	if bornday == 1 || bornday == 21 || bornday == 31
+	{	"%(bornday)st"	}
+	elseif bornday == 2 || bornday == 22
+	{	"%(bornday)nd"	}
+	elseif bornday == 3 || bornday == 23
+	{	"%(bornday)rd"	}
+	else
+	{	"%(bornday)th"	}
+}	
+
+//--OnUserBornDay
+//This is much like the above function OnUserBornMonth. It'll take the value the user put in for the day and analyze it. Again, there'll be comments explaining how it works, but all you really need to do is change the dialogue appropriately. I'll point out where you can add new dates to check for.
+
+OnUserBornDay
+{
+	_tempday = reference0 //storing the input in _tempday
+	_tempday = TOLOWER(_tempday) //changes it to lowercase
+	_tempday = REPLACE(_tempday,"st","") //if the user types something like 2nd, 3rd, etc, this will make it just the number. It'll just add the suffix back later on the one that actually shows.
+	_tempday = REPLACE(_tempday,"nd","")
+	_tempday = REPLACE(_tempday,"rd","")
+	_tempday = REPLACE(_tempday,"th","")
+	_tempday = TOINT(_tempday) //Converts it to an integer
+	
+	if ((bornmonth == 1 || bornmonth == 3 || bornmonth == 5 || bornmonth == 7 || bornmonth == 8 || bornmonth == 10 || bornmonth == 12) && _tempday >= 1 && _tempday <= 31) || (bornmonth == 2 && _tempday >= 1 && _tempday <= 29) || ((bornmonth == 4 || bornmonth == 6 || bornmonth == 9 || bornmonth == 11) && _tempday >= 1 && _tempday <= 30) //This ugly function checks if the day falls into a valid range. If it does, we set some variables and continue down.
+	{
+		bornday = _tempday
+		borndayprint = Printday
+		userbirthday = "%(bornmonth)month %(bornday)day"
+		birthdayprint = "%(bornmonthprint) %(borndayprint)"
+		
+		"%(birthchecked)"
+		//Mostly defining envelopes and values in here. No need to touch any of this! Eagle-eyed readers will notice the new envelope birthchecked on its own line like a tiny king. We'll get to that momentarily, but pay it no mind for now.
+	}
+	else //If the day isn't valid, like the 10046th or something, this will open the input box again and have a \e so the dialogue below doesn't play. You can replace the dialogue in the first line here.
+	{
+		"\0\s[0]That's not a valid day. Try again."
+		--
+		"\![open,inputbox,OnUserBornDay,-1]\e"
+	}	
+}
+
+//--birthchecked
+//This is the new envelope you saw me point out above. As you can see here, you can actually call dialogue in a function with an envelope, even when it has if and else statements like here! Which can be pretty handy. Again, more on envelopes in word.dic. Creative ghostmakers can find handy ways to exploit this, I'm sure.
+
+birthchecked
+{
+	if userbirthday == dayslot //if today is the user's birthday
+		{
+			"\0\s[0]Happy hatching day, %(username).\e"
+			//replace this dialogue with whatever you like
+		}
+	
+	else //if the birthday is not listed above.
+		{
+			"\0\s[0]Your hatching day is %(bornmonthprint) %(borndayprint). I'll remember.\e"
+			//note the use of envelopes to display the newly set birthday properly. You can replace this dialogue as well, and you can use %(bornmonthprint) and %(borndayprint) to display the month and day in the new dialogue, if you want.
+		}
+}
+
+//--Talk Rate
+//This is when the user chooses to adjust the talk rate in the config menu. The talk rate is how often the ghost will read some dialogue from aitalk.dic.
+
+Select.talkinter
+ 	{
+ 		"\0\s[0]\b2How often do you want me to talk to you? The interval is currently set to %(talktime)./
+		//note the new envelope here for %(talktime). You'll see it again in a second. You can replace the dialogue above with whatever you like, just make sure it ends with ./ and not \e.
+ 		\0\n\n[half]/
+ 		\![*]\q[Every 30 seconds,TALKMAX]\n/
+		\![*]\q[Every minute,TALKHIGH]\n/
+ 		\![*]\q[Every 3 minutes,TALKNORMAL]\n/
+		\![*]\q[Every 5 minutes,TALKPOOR]\n/
+ 		\![*]\q[Don't speak,TALKNONE]\n\n[half]/
+		\![*]\q[Don't change,TalksTill]\e"
+	}
+
+//If the user doesn't want to change the rate. You can change all of the dialogue in any of these options if you want to reflect the choice the user made. You TECHNICALLY could also change the value in talktime to reflect some other way of measuring time but I wouldn't recommend it, it'd just be confusing I'm sure.
+Select.TalksTill
+	{
+		"\0\s[0]No change to my talk rate.\e"
+	}
+
+//If the user chooses every 30 seconds.
+Select.TALKMAX
+	{
+ 		talktime = "30 seconds" //this sets up the envelope properly
+		aitalkinterval = 30 //this changes the actual rate
+		
+ 		"\0\s[0]I will speak every 30 seconds.\e"
+	}
+
+//If the user chooses every minute.
+Select.TALKHIGH
+	{
+ 		talktime = "minute"
+		aitalkinterval = 60
+		
+ 		"\0\s[0]I will speak every minute.\e"
+	}
+
+//If the user chooses every three minutes.
+Select.TALKNORMAL
+	{
+ 		talktime = "3 minutes"
+		aitalkinterval = 180
+		
+ 		"\0\s[0]I will speak every three minutes.\e"
+	}
+
+//If the user chooses every five minutes. This is the default rate the ghost will start up in, as seen in bootend.dic.
+Select.TALKPOOR
+	{
+ 		talktime = "5 minutes"
+		aitalkinterval = 300
+		
+ 		"\0\s[0]I will speak every five minutes.\e"
+	}
+
+//If the user chooses to not have them speak. This is one case where you MIGHT want to make talktime equal something else, if you have a snappier way of saying the ghost won't talk. Make sure it flows well in your menus though, since it will be displayed in your config menu.
+Select.TALKNONE
+	{
+ 		talktime = "No talking!"
+		aitalkinterval = 0
+		
+		"\0\s[0]I will not speak unless you prompt me to.\e"
+	}
+
+	
+//This is when the user chooses to change their name. It's linked to the functions outlined in nameteach.dic. Nothing to touch here.
+Select.TEACHNAME
+	{
+		OnTeachName	
+	}
+
+	
+//If the user selects cancel in a menu. Replace as you like, or just leave them blank.
+Select.CANCEL
+	{
+		"\0\s[18]No complaints from me.\e"
+		
+		"\0\s[0]Alright.\e"
+		
+		"\0\s[0]Fine.\e"
+ 	}
+
+
+//If the user chooses to empty the recycle bin.
+Select.ChoiceGarbagecan
+{
+	_gomicheck = FUNCTIONEX("gomi.dll", "-n")	//Don't touch this line. for those curious, it's referencing a SAORI, which are optional user-made plug-in dlls you can download to enable different functions on your ghost. gomi.dll is one included with this template. All SAORI are in Japanese (maybe Korean or Chinese as well idk) and many have disappeared by now, so don't concern yourself very much with SAORI. They're for skilled developers, mostly.
+	
+	if _gomicheck == 0 //If the recycle bin is empty.
+	{
+		"\0\s[14]Fine. You're lucky I don't have anything better to do.\w8\w8\s[-1]\w8\w8\w8\w8\w8\w8\w8\c\s[15]Your garbage is already empty. Are you just burdening me with meaningless chores now?\e"
+
+		//This isn't the usual flat template dialogue, mostly because I wanted to show that this is a good place to use s[-1], which I covered in the walkthrough file. You can have your ghost disappear momentarily like they're going to check your recycle bin, then come back. \c clears the ghost's balloon of text. Replace dialogue as you desire.
+	}
+	elseif _gomicheck >= 1 //If the recycle bin is full.
+
+	{
+		"\0\s[14]You want me to clean up your garbage?\w8\n\s[12]Moons above, help me.\w8\w8\w8\w8\s[-1] \![raise,OnGarbagecanEmpty]\w8\w8\w8\w8\w8\s[14]\n\nThere.\w8\w8\w8 Happy now?\e"
+
+		
+		//Somewhat similar to the above, but notice the \![raise],OnGarbagecanEmpty] tag in there. That's what actually empties the recycle bin, so make sure you don't delete that tag. Otherwise, replace the dialogue as you want.
+		//As you can see, you can have multiple pieces of dialogue in here, just like you can for many other functions scattered through the .dic files. If you only want the one, just delete the others, or if you want to add more, just copy and paste and write new dialogue as it comes to you. This applies to when the recycle bin is empty as well.
+	}
+}
+
+
+//This is for the SAORI, don't touch it.
+OnGarbagecanEmpty
+{
+	_gomi = FUNCTIONEX("gomi.dll", "-f")
+}
+	
+//Going back to the MenuRun function we finished above, this is if someone selects the Functions option, linked to dosomething. As you can see, it ends up as Select.dosomething.
+
+Select.dosomething
+{
+ 		"\0\s[14]\b2I suppose I have nothing better to do.\n\n"
+ 		"\0\s[14]\b2Brilliant. What do you want from me?\n\n"
+		"\0\s[16]\b2Fine, I'll do your chores.\n\n"
+		
+		//I mentioned this above in MenuRun, but you can have a set of multiple different responses that may randomly appear when the menu is opened if you offset them from the rest with the -- dashes below this note. Try opening this menu yourself with the template to see how it works. The character will randomly choose one line as the intro. 
+		//If you don't want to deal with this, just delete the extra lines and leave one. Otherwise, replace the dialogue above as you like, but note that they don't end with \e here. You can leave the rest of this below alone.
+		--
+ 		"\![*]\q[Empty Recycle Bin,ChoiceGarbagecan]\n\n/
+		\![*]\q[Open Calendar,CALENDAR]\n\n/
+		\![*]\q[Check Email,MailCheck]\n\n/
+		\![*]\q[Open SSP Preferences,sspconfig]\n\n/
+		\![*]\q[System Information,ChoiceSystemInformation]\n\n\n/
+ 		\![*]\q[Back to main menu,BACKTOMENU]\e"
+}
+
+//When the user clicks Open Calender. This will open the calender function of SSP, an in-built feature that you don't have to worry about in the least.
+Select.CALENDAR
+{
+	"\0\s[15]Forgot the date? \s[14]Sounds about right.\w8\![open,calendar]\e"
+	
+	//You can replace the dialogue here up to the \!.
+	//Advanced users, can you break it down yet? It's basically just using \! to open calender.exe or dll or whatever SSP uses to make it happen.
+}
+
+//When the user chooses SSP preferences. This will open the same window that shows up if you right click your ghost and go to Utilities - Preferences.
+Select.sspconfig
+{
+	"\0\s[14]Fine, here.\w4\![open,configurationdialog]\e"
+	
+	//Again, you can replace up to the \! tag.
+}
+
+
+//This is when the user chooses System Information. Don't touch any of this either. For those curious though, note that this is done using another SAORI, this time saori_cpuid.dll.
+Select.ChoiceSystemInformation
+{
+	os_name = FUNCTIONEX("saori_cpuid.dll","os.name")
+	os_version = FUNCTIONEX("saori_cpuid.dll","os.version")
+	cpu_name = FUNCTIONEX("saori_cpuid.dll","cpu.name")
+	cpu_clockex = FUNCTIONEX("saori_cpuid.dll","cpu.clockex")
+	"/
+	\0\s[0]\b[2]/
+	\_q\f[bold,1]OS:\f[bold,0] %(os_name) %(os_version)\n/
+	\f[bold,1]Memory Load:\f[bold,0] %(memoryload)%\n/
+	\f[bold,1]Physical Memory:\f[bold,0] %(memoryavailphys) KB\n/
+	\f[bold,1]CPU:\f[bold,0] %(cpu_name) %(cpu_clockex)MHz\n/
+	\f[bold,1]Ukagaka:\f[bold,0] %property[baseware.version]/
+	\e"
+}
+	
+//This is when the user chooses to check their email. The rest of this function plays out in etc.dic. You can leave this alone.
+Select.MailCheck
+	{
+		"\![biff]\e"
+	}
+
+
+	
+//---- OnChoiceTimeout ---------------------------------------------------------
+//If the user is given a menu with choices, but doesn't pick one of the choices, it will eventually time out. At that point, they will say this dialogue. Replace with whatever you like, or leave it blank.
+
+OnChoiceTimeout
+ {
+	"\0\s[17]She's no longer interested.\e"
+ }
+
+ 

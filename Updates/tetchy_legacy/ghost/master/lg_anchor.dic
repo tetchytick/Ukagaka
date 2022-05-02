@@ -1,0 +1,70 @@
+//---------------------------Anchors and OnTranslate--------------------------
+
+//This .dic file is for setting up anchor words, which are links to set conversations attached to certain words automatically. It also deals with OnTranslate, which is a fairly unique function. All text goes through OnTranslate first before it displays on your ghost, which is how it knows to turn certain words into links.
+//Why should I care about anchor words, you ask? Or what can I use them for? Well, you can set up anchor words to easy explanations for things your ghost might talk about that might confuse your user. People they know, places they've been, pop culture references the user might not get, information about you the creator or the world the characters from, items in an item menu, basically any number of things. Anchor words can be a handy repository of information! Or just an easy way to set up some cheap jokes. The power is yours!
+
+//Make sure to read the walkthrough (http://www.ashido.com/ukagaka/walkthrough.html) for more details about how to properly format ghost dialogue!
+//I will reiterate that you should be editing these in Notepad++, and in particular, you should set the Language to C to properly highlight all the text. It will make things A LOT EASIER for you, trust me! It will also help you keep track of your brackets in case you forget some. If you click on a line with a bracket in Notepad++, it should highlight where the other bracket ends, or turn purple if there's no finishing bracket (which you should definitely fix!)
+//It will also highlight my commented lines in green, so you'll know where they are. Any line beginning with // is a commented line that the code will not read. It's just for your reference!
+
+//This file is very short, so don't worry! And if you aren't planning on using anchor words, you just have to delete a few things and you'll be done!
+
+
+//--OnTranslate
+
+//As I said above, OnTranslate filters through all the text your ghost displays and does whatever you specify to it. That doesn't have to just be turning things into links, it could be anything. This is a powerful function that can be used in a lot of creative ways I bet, but I wouldn't mess with it too much since you can pretty easily break stuff if you don't know what you're doing.
+//If you're not interested in any anchor words, delete all the lines that start with _talk = REPLACE under OnTranslate.
+
+OnTranslate
+	{
+	_talk = reference0
+ 	_talk = REPLACE(_talk, "Anchor 1", "\_a[anchor1]Anchor 1\_a")
+ 	_talk = REPLACE(_talk, "Anchor 2", "\_a[anchor2]Anchor 2\_a")
+ 	_talk = REPLACE(_talk, "Anchor 3", "\_a[anchor3]Anchor 3\_a")
+	
+		if reference1 == "" && reference2 == "" { //send input box : no event (ref2) , no special flag (ref1)
+            EVAL('"' + REPLACE(_talk,'"','" + CHR(0x22) + "') + '"')
+        }
+        else { //event result from ghost
+            TOSTR(_talk)
+        }
+	}
+	
+	//Some brief explanation about what's going on in those REPLACE lines! Basically, the function looks through the script and looks for a defined word or set of words. In this case, it's "Anchor 1". It then replaces "Anchor 1" with the second set of text, "\_a[anchor1]Anchor 1\_a". \_a if you recall is the dialogue code for linking something, so this is linking the words Anchor 1 to something called anchor1 set up in the next function, OnAnchorSelect.
+	//This is being used to change a word into a link, but you could conceivably use this to replace any text with any other kind of text if you wanted.
+
+	
+//--OnAnchorSelect
+//OnAnchorSelect runs whenever someone clicks one of the links as specified above, or a link that begins with http://.
+
+OnAnchorSelect
+{
+	if "http://" _in_ reference0 || "https://" _in_ reference0 //checking to see if the link is a web address
+	{
+	"\j[%(reference0)]\e" // \j is a tag that will open a specified url in the user's browser of choice. This basically just tells the ghost to open the webpage stored in reference0, which would be the address that the user just clicked. I didn't get too much into \j in the walkthrough page because I have literally never used it except here.
+	}
+	else //if it's NOT a web address
+	{
+	case reference0 //case is a unique thing that only really shows up in anchor.dic, and it basically sets up reference0 for evaluation to see if matches any of the below criteria, which are all tagged with when. You can read more about this on the coding page on the walkthrough site. You can add as many things here as you want to set up above as long as you follow the basic format.
+		{
+			when "anchor1" //if the link is this value
+			{
+				"\0\s[0]This dialogue is for when Anchor 1 is clicked.\e"
+			}
+			when "anchor2" //if the link is this value
+			{
+				"\0\s[0]This dialogue is for when Anchor 2 is clicked.\e"
+			}
+			when "anchor3" //if the link is this value
+			{
+				"\1\s[10]This dialogue is for when Anchor 3 is clicked.\e"
+			}
+		}
+	}
+}
+
+//This bit of code is what makes menu options that don't start with On direct to Select.options instead. Remove or comment it if you prefer!
+OnChoiceSelect
+{
+	EVAL("Select.%(reference0)")
+}
