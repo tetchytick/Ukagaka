@@ -178,7 +178,7 @@ OnVanishSelecting
 
 OnVanishSelected
 {
-	"\0\s[21]Farewell.\e"
+	"\0\s[21]Farewell.\w8\w8\e"
 }
 
 
@@ -187,7 +187,7 @@ OnVanishSelected
 
 OnVanishCancel
 {
-	"\0\s[0]Don't do that. /w8/s[20]Don't give me hope.\e"
+	"\0\s[0]Don't do that.\n\w8\s[20]Don't give me hope.\e"
 }
 
 //--OnVanishButtonHold

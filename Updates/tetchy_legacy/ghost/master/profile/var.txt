@@ -5,6 +5,6 @@ surfacecount,45
 homeurl,https://raw.githubusercontent.com/tetchytick/Ukagaka/main/Updates/tetchy_legacy/
 update_result,OK(0)
 firstboot,704176323
-update_time,704868601
+update_time,704869225
 commitmemorysize,3416130
-lastboot,704868657
+lastboot,704869217
