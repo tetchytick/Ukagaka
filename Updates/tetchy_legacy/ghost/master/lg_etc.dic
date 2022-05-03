@@ -21,7 +21,7 @@ OnFileDrop2
 		{
 			Wallpaperfile = reference0
 			
-			"\0\s[0]The file you dropped is %(_filename)%(_fileext).\w8\0\s[0]How do you want me to format your new wallpaper?\n\n[half]/
+			"\0\s[0]The file you dropped is '%(_filename)%(_fileext).'\w8\0\s[0]How do you want me to format your new wallpaper?\n\n[half]/
 			\![*]\q[Centered,SetWallpaper_0]\n/
 			\![*]\q[Tiled,SetWallpaper_1]\n/
 			\![*]\q[Stretched,SetWallpaper_2]\n\n[half]/
