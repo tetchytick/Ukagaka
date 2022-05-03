@@ -377,6 +377,7 @@ MenuRun
 	"\0\s[19]\w4(She listens without interruption. \w4..\s[20]For once, she looks understanding.)"
 	"\0\s[22]\w4I'm sure that whatever is going on won't last forever. \s[23]You will be fine, in time."
 	"\0\s[24]\w4(She considers what you said thoughtfully.)"
+	"\0\s[8]\w4(She seems thoughtful.)"
 	"\0\s[23]\w4I know how that must feel.\n\s[15]It will be alright."
 	--
 	"\n\n\w4/

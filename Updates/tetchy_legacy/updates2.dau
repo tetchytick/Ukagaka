@@ -6,9 +6,10 @@ ghost/master/lg_anchor.dic8a4f82ac7b47bb7ede6b046ae940cb3bsize=5178date=2021-
 ghost/master/lg_bootend.dic02fb796caeb5cffb6c1c54955156d328size=32172date=2022-05-01T20:34:00
 ghost/master/lg_commu.dic3207be180066d08400634abf16553b12size=6659date=2022-04-29T20:50:00
 ghost/master/lg_etc.dicaea57a698e271e5954f62b0dd3c8e061size=35574date=2022-04-29T22:19:28
+ghost/master/lg_menu.dic3cff9c78ee598f40ac1fac69c584629asize=50801date=2022-05-02T21:03:40
 ghost/master/lg_mouse.dic2103613dd0cee36d150837a13c3999ffsize=12935date=2022-04-28T22:33:24
 ghost/master/lg_nameteach.dicc181571bf754c39f5f2a0b9e8b9e7404size=7981date=2022-05-01T21:34:48
-ghost/master/lg_string.dic09aeed6c3ccbc640d46411f9be321898size=9545date=2022-05-02T20:29:00
+ghost/master/lg_string.dic7e37f96822803cdf8035f96923efd701size=9551date=2022-05-02T20:51:17
 ghost/master/lg_word.dic6708dd7ef6829f83a1eff66f4122bd43size=9085date=2020-11-07T00:51:28
 ghost/master/mciaudior.dllb1082bccd2aac2017f7936baf2d967b3size=29696date=2003-03-13T10:23:26
 ghost/master/saori_cpuid.dlld13370aee8e579fe2517d789dba7c45esize=225280date=2004-04-17T13:47:18
@@ -24,7 +25,7 @@ ghost/master/system_config.txt398943de62d5c9d25e3d3b286ba0ae92size=926date=20
 ghost/master/yaya.dllb7a07af9018500934f69a0335568242dsize=761856date=2021-12-08T19:30:46
 ghost/master/yaya.txt4c0e4cd92f9f27669a40c11c0b70b6bdsize=1509date=2022-04-24T21:42:06
 ghost/master/yaya_config.txt134ca91eba1f7864526eaa3a2142dd20size=3920date=2017-03-17T20:07:24
-install.txtd7de8878a8a1a423f524cb112b743feesize=927date=2022-05-02T19:07:48
+install.txt0f36347d95544606bd12dfb5543c39bbsize=109date=2022-05-02T20:52:59
 legacy.icod26a0b775b228d311a7edb3a7423040bsize=1150date=2022-04-25T00:36:12
 readme.txt00ad712951944f42ea582b55e826a7ffsize=21date=2022-04-25T00:33:06
 shell/master/descript.txt3d4697cfbf44da6131b1ed4fbbf3c2d2size=5537date=2022-04-27T00:27:48

@@ -9,7 +9,7 @@ shiori.debugnotify,0
 Char3.center,2335
 Char.VirtualDesktop,dd14b33c-40fd-4a7d-ba9f-d38bea839634
 Char2.center,2237
-Char0.center,1131
+Char0.center,1937
 scriptbox.top,1092
 shell,shell\master\
 FirstBoot,booted
@@ -17,5 +17,6 @@ Char1.center,1615
 shiori.log,0
 shell.ischanged.2,1
 inputbox.top,792
-update.lastexec,704853029
+update.lastexec,704854538
+DeveloperPalette.visible,1
 __system_written_flag_do_not_remove__,written
