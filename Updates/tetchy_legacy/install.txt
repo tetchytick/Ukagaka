@@ -10,4 +10,4 @@ directory,tetchy_legacy
 
 //This tells the program what balloon your ghost will be using. You should only uncomment this line if you're bundling a balloon with your ghost. Meaning, inside your ghost folder, you have ghost, shell, and your balloon's folder (like z_simple, balloontime, newsreport). If your balloon folder in there, it will install with your ghost. If you do NOT have a balloon included with your ghost, then leave this line commented.
 
-//balloon.directory,z_simple
+balloon.directory,tetchy_woodborder
