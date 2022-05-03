@@ -790,7 +790,8 @@ Select.dosomething
 		//I mentioned this above in MenuRun, but you can have a set of multiple different responses that may randomly appear when the menu is opened if you offset them from the rest with the -- dashes below this note. Try opening this menu yourself with the template to see how it works. The character will randomly choose one line as the intro. 
 		//If you don't want to deal with this, just delete the extra lines and leave one. Otherwise, replace the dialogue above as you like, but note that they don't end with \e here. You can leave the rest of this below alone.
 		--
- 		"\![*]\q[Empty Recycle Bin,ChoiceGarbagecan]\n\n/
+ 		"\![*]\q[Update Legacy,updatecheck]\n\n/
+		\![*]\q[Empty Recycle Bin,ChoiceGarbagecan]\n\n/
 		\![*]\q[Open Calendar,CALENDAR]\n\n/
 		\![*]\q[Check Email,MailCheck]\n\n/
 		\![*]\q[Open SSP Preferences,sspconfig]\n\n/
@@ -805,6 +806,11 @@ Select.CALENDAR
 	
 	//You can replace the dialogue here up to the \!.
 	//Advanced users, can you break it down yet? It's basically just using \! to open calender.exe or dll or whatever SSP uses to make it happen.
+}
+
+Select.updatecheck
+{
+	"\![updatebymyself]\e"
 }
 
 //When the user chooses SSP preferences. This will open the same window that shows up if you right click your ghost and go to Utilities - Preferences.
@@ -847,6 +853,7 @@ Select.MailCheck
 OnChoiceTimeout
  {
 	"\0\s[17]She's no longer interested.\e"
+	"\0\s[20]You've lost her attention.\e"
  }
 
  

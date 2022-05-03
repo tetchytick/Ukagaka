@@ -312,7 +312,7 @@ OnUpdateReady
  
 	reference0++ //makes sure it starts at 1 instead of 0
 	
-    "\0\s[0]Looks like there's an update. There are %(reference0) new files. /s[19]Updating\w4.\w4.\w4.\w8\e"
+    "\0\s[0]Looks like there's an update. There are %(reference0) new files. \s[19]Updating\w4.\w4.\w4.\w8\e"
 	
 	//reference0 here storing the number of new files. You don't have to use it if you don't want to.
  }
