@@ -268,7 +268,7 @@ MenuRun
 	"\0\s[23]Ruler Moss is much more eager than I am to assist the IceWings. \w4\s14The RainWings would've stayed out of it if we'd had a choice, \w3\s[15]but it's quite hard to avoid thousands of enraged fire-breathing dragons all across the continent."
 	"\0\s[22]It's just fantastic that my alliance leader lives on the complete opposite side of the continent. \w4\s[23]I'm just enthralled by the idea of flying for three days straight to have meetings over absolutely nothing at all."
 	"\0\s[14]It's all I hear about anymore. \s[7]'Vulture did this!'\w3 'Vulture did that!'\w4 I don't care what Vulture did.\w4\n\s[16]Unless he died horribly and tragically. \s[6]That would be pretty newsworthy."
-	"\0\s[14]The IceWings and SkyWings are fighting over this useless crystal heart. \w4\s[7]They don't even know what it does! \w5\s[16]Unbelievable.\w5\n\s[15]I'm going to start a war over stupid dragons being born."
+	"\0\s[14]The IceWings and SkyWings are fighting over this useless crystal heart. \w4\s[7]They don't even know what it does! \w5\s[16]Unbelievable.\w5\n\s[15]I'm going to start a war over stupid dragons being hatched."
 	"\0\s[15]I wish the MudWings would have chosen to ally with the IceWings. \w2King Bog keeps making Vulture celebratory pastries, \s[16]and we don't get any."
 	"\0\s[15]RainWing Heir Fog was recently tasked with leading an expedition to check out the cave where the animus relic resides. \s[16]Maybe then the IceWings and SkyWings will stop bickering endlessly over it.\w8\nI have a lot of faith in Fog, especially because he was ruler just before me."
 	"\0\s[14]\_a[https://www.youtube.com/watch?v=2xiw9CPg04I]The Frostburn War\_a has been going on for quite some time now. \s[16]It's only a matter of time before proper battles start to break out."
@@ -485,7 +485,7 @@ Select.TEACHPRONOUN
 	"\0\s[0]What pronouns do you use?\w5\n\n[half]\_q/
 		\![*]\q[He/Him/His,choicemasc]\n/
 		\![*]\q[She/Her/Hers,choicefem]\n/	
-		\![*]\q[They/Theim/Theirs,choiceneither]\e"
+		\![*]\q[They/Them/Theirs,choiceneither]\e"
 }
 
 Select.choicemasc
