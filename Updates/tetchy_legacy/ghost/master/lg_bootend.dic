@@ -463,7 +463,7 @@ OnGhostChanging
 	}
  	else //If you're switching to another Ghost.
 	{
-		"\0\s[0]Yes, go play with %(reference0) instead.w8\w8\e"
+		"\0\s[0]Yes, go play with %(reference0) instead.\w8\w8\e"
 		
 		//Replace this dialogue with whatever you like. Notice the use of the %(reference0) envelope here? In OnGhostChanging, %(reference0) stores the name of the ghost being swapped to, so if you want to display what you're switching to, you can use %(reference0) as in this example. You don't have to use %(reference0) if you don't want to though.
 	}

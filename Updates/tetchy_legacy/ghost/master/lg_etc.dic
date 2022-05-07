@@ -70,7 +70,7 @@ Select.SetWallpaper_Cancel
  
 OnInstallBegin
  {
-	"\0\s[0]I'll install that for you. \w8\s[8](She said that a bit too eagerly. It must interest her.)\e"
+	"\0\s[0]I'll install that for you. \n\n\w8\s[8](She said that a bit too eagerly. It must interest her.)\e"
  }
 
  //---- OnInstallComplete -------------------------------------------------------
