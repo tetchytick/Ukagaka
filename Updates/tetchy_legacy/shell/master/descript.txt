@@ -80,8 +80,8 @@ menu.separator.color.b,0
 //Menu Background Image Alignment
 //If you have images you want to set for your menu, this determines the alignment of the background and foreground pictures. You can put in lefttop, righttop, or centertop, and bottom or top for the sidebar. You'd be replacing righttop or bottom with whatever alignment you prefer.
 
-menu.background.alignment,centertop
-menu.foreground.alignment,centertop
+menu.background.alignment,centerbottom
+menu.foreground.alignment,centerbottom
 menu.sidebar.alignment,bottom
 
 

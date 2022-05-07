@@ -124,7 +124,7 @@ MenuRun
 	"\0\s[14]One must always know where to put their talons when navigating the rainforest. The other tribes amble about so mindlessly.\w4.\w4\n\s[20]No wonder they are the way they are."
 	"\0\s[0]Our village is one of the most protected on the continent.\n\s[6]It's nestled so deep in the jungle that outsiders often get lost trying to find it."
 	"\0\s[14]Are you trying to glean information from my responses?\w4 Well, I won't tell you anything worth remembering.\w4\n\s[20]You'll never find the village."
-	"\0\s[0]Our dragonets wander off into the jungle sometimes.\w4\n\s[23]Almost getting eaten by tigers is a right of passage, if you ask me."
+	"\0\s[0]Our dragonets wander off into the jungle sometimes.\w4\n\s[23]Almost getting eaten by tigers is a rite of passage, if you ask me."
 	"\0\s[0]The rainforest is covered in all kinds of fruits. If you ever decide to trespass, \s[15]make sure you eat all the vibrant, spiky-looking ones."
 	"\0\s[9]She's pretending she can't hear you."
 	"\0\s[12]We found a SandWing hybrid deep in the rainforest the other day.\n\s[20]\w8She's been\w4.\w4.taken care of."
@@ -145,7 +145,7 @@ MenuRun
 	"\0\s[15]Our challenges are slightly less violent than the ones you might find in the other tribes.\s[16]\w8\nI plan to--\w8\s[14]\w8\w4\s[17] .\w4.Nevermind."
 	"\0\s[6]It's good to see young dragons challenging their way into the ranks. \s[0]The RainWings can always use more passion."
 	"\0\s[22]I don't know why it matters to you, but it's in your best interest to keep your snout where it belongs."
-	"\0\s[19](You ask her what kind of royal challenges the RainWings do. For once, she actually looks interested.)\w8\w8\s[20]A royal dragon and their challenger can decide on whatever challenge they'd like. \w3Racing, scavenging, academia, debate..\w4Anything. \w8\n\s[18]Battle challenges, however, are a bit.\w4.\w4controversial. To say the least."
+	"\0\s[19](You ask her what kind of royal challenges the RainWings do. For once, she actually looks interested.)\w8\w8\n\n\s[20]A royal dragon and their challenger can decide on whatever challenge they'd like. \w3Racing, scavenging, history, debate.. \w8\n\s[18]Battle challenges, however, are a bit.\w4.\w4\ncontroversial. To say the least."
 	"\0\s[19](You ask her if she thinks you'd make a good royal.)\n\n\w8\s[16]I hardly know you. \w8\s[14]How do you expect me to answer that?"
 	--
 	"\n\n\w4/
@@ -196,7 +196,7 @@ MenuRun
 	"\0\s[16]I have no idea why you're so interested in my life.\n\n\w4\w8\s[13](You tell her she's deflecting.)\n\w8\s[20](She ignores you.)"
 	"\0\s[18]Princess Raina will make a great queen someday.\n\n\w8\w8\s[26](You ask her about Princess Raina.)\n\n\w4\w8\s[21]\w8\w8\w8\s[4]\w4.\w4.\w4."
 	"\0\s[17](You ask her how she became royal.)\n\n\w4\w8\s[21]\w8\w8\w8\s[4]\w4.\w4.\w4."
-	"\0\s[17](You ask her about the ruler before her.)\n\n\w4\w8\s[20]Ruler Fog is a good dragon.\n\n\w8(You ask why she challenged them.)\n\n\w8\w4.\w4.\w4.\s[21]"
+	"\0\s[17](You ask her about the ruler before her.)\n\n\w4\w8\s[20]Fog is a good dragon.\n\n\w8(You ask why she challenged them.)\n\n\w8\w4.\w4.\w4.\s[21]"
 	"\0\s[17](You ask her if she likes being queen.)\n\n\w8\w8\w8\s[20].\w4.\w4I do what I have to."
 	"\0\s[22]I'm not interested in a discussion about my status."
 		--
@@ -211,7 +211,7 @@ MenuRun
 	"\0\s[15]I heard some new construction has started on the NightWing peninsula. \s[16]Perhaps they'll finally get a palace."
 	"\0\s[0]A few RainWings flew out to Sediment Canyon the other day to pick up some new imports. \s[16]Crossing over Claws of the Clouds is never pleasant."
 	"\0\s[0]I heard Possibility is expanding again. \w4\s[14]It seems the SandWings are always expanding."
-	"\0\s[0]My friend Jauari approached me the other day with a flyer for Skyfire Academy. \s[7]With current affairs, no RainWings are going to be attending a SkyWing academy anytime soon."
+	"\0\s[0]My friend Jauari approached me the other day with a flyer for Skyfire Academy. \s[7]Given current affairs, no RainWings are going to be attending a SkyWing academy anytime soon."
 	"\0\s[0]I had to go on an expedition to Serpent's Reach the other day.\w4\s[18] I hate getting my scales wet."
 	"\0\s[8]I heard some news about a strangely colored HiveWing sneaking around Scorpion Den. \s[16]How curious."
 	"\0\s[0]Have you heard about the Association of Scavenger Safety?\w8 I may be a vegetarian, \w3\s[22]but it seems a little excessive to me."
@@ -332,7 +332,7 @@ MenuRun
 	"\0\s[19](You tell her that you know RainWing scales change colors.)\n\n\w8\s[13]Yes, and what about it?\n\n\w8\w8(You tell her you think it's weird how \s[26]her scales never do.)\w8\w8\s[27]"
 	"\0\s[19](You tell her that \s[26]she's weak.)\w8\w8\n\n\s[18]\w4.\w4.\w4.You don't know me.\n\n\w8\s[13](You tell her that you don't have to.)\n\n\w8\w8\s[27]\w4.\w4.\w4."
 	"\0\s[19](You tell her that she doesn't \s[26]deserve to go home.)\n\w8\w8\s[4]\w8(She looks defeated.)"
-	"\0\s[19](You tell her her wings look strange.)\n\w8\s[21](She just looks uncomfortable.)"
+	"\0\s[19](You tell her you think her wings look strange.)\n\w8\s[21](She just looks uncomfortable.)"
 	"\0\s[13](You tell her that her horns are a strange shape.)\n\w8\s[9](She's ignoring you.)"
 	"\0\s[19](You tell her that you know she's not a \s[26]regular RainWing.)\n\n\w8\w4.\w3.\w3.\s[27]You don't know what you're talking about."
 	--

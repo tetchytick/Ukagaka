@@ -94,6 +94,10 @@ OnNameTeach
 	{
 		"\0\s[6]t for tetchy\![open,inputbox,OnNameTeach,-1]"
 	}
+	elseif reference0 == "tetchytick"
+	{
+		"\0\s[6]t for tetchy\![open,inputbox,OnNameTeach,-1]"
+	}
 	elseif reference0 == "t"
 	{
 		"\0\s[6]t for tetchy\![open,inputbox,OnNameTeach,-1]"

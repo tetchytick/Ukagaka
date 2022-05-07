@@ -1,5 +1,4 @@
 //---------------------SURFACES---------------------
-//NOTE:GO THROUGH AND FIX COLLISIONS
 
 //FIRSTBOOT SURFACES
 surface100

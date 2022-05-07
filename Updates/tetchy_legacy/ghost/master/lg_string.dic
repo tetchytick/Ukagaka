@@ -35,7 +35,7 @@ On_homeurl
 
 On_recommendrootbutton.caption
  {
-	"Reference Sites"
+	"Developer Sites"
 }
 
 
@@ -44,125 +44,71 @@ On_recommendrootbutton.caption
 
 On_sakura.recommendsites
  {
-	"Ghost Template Walkthrough"
+	 
+	 	"Legacy Library"
 	--
-	//This first line is the name that will display in the menu for your site. In this case, it would display "Ghost Template Walkthrough".
+	"%ASC(1)https://discord.gg/aq7HuFJnfR%ASC(2)"
+	--
+	
+	"tetchytick's Website"
+	--
+	"%ASC(1)https://tetchytick.carrd.co/%ASC(2)"
+	--
+	
+	
+	"tetchytick's DA"
+	--
+	"%ASC(1)https://www.deviantart.com/tetchytick/%ASC(2)"
+	--
+	
+	
+	"tetchytick's Youtube"
+	--
+	"%ASC(1)https://www.youtube.com/channel/UC7snOidZr-IZxJ6UUqfiB8Q%ASC(2)"
+	--
+	
+	
+	"tetchytick's Ko-Fi"
+	--
+	"%ASC(1)https://ko-fi.com/tetchytick%ASC(2)"
+	--
+	
+ }
+
+On_portalrootbutton.caption
+ {
+	"Ghost-Making"
+ }
+
+ //---- Websites in the Second Option --------------------------------------------------
+ //These are the websites listed under that second button we just named up there.
+ 
+On_sakura.portalsites
+ {
+	 
+	 "Zarla's Ghost Walkthrough"
+	--
 	"%ASC(1)http://www.ashido.com/ukagaka/%ASC(2)"
 	--
-	//And this is the site that it would link to. Note that a website address begins with %ASC(1) and ends with %ASC(2). Don't forget these!
 	
-	"Zarla's Twitter"
-	--
-	"%ASC(1)https://twitter.com/Zarla_S/%ASC(2)"
-	--
-	
-	"Zarla's Tumblr"
-	--
-	"%ASC(1)http://zarla-s.tumblr.com/%ASC(2)"
-	--
-	
-	"Zarla's Dreamwidth"
-	--
-	"%ASC(1)http://zarla.dreamwidth.org/%ASC(2)"
-	--
-	
-	"SSP"
+ 	"SSP"
 	--
 	"%ASC(1)http://ssp.shillest.net/%ASC(2)"
 	--
 	
-	"Crow + SSP Reference (J)"
-	--
-	"%ASC(1)http://crow.aqrs.jp/reference/all/index.html%ASC(2)"
-	--
-	
-	"Ghost Documentation (J)"
+	"Ghost Documentation"
 	--
 	"%ASC(1)http://usada.sakura.vg/contents/specification.html%ASC(2)"
 	--
 	
-	"Disc-2 (J)"
-	--
-	"%ASC(1)http://disc2.s56.xrea.com/%ASC(2)"
-	
-	"UKADOC Project Wiki (J)"
-	--
-	"%ASC(1)http://ssp.shillest.net/ukadoc/manual/index.html/%ASC(2)"
-	//You don't have to space these out like this between sites, but I thought it'd make it a bit easier to read.
  }
  
-//---- The second option from the top's caption -----------------------------------------
-//This is the name of the second option in that list. You can change this to whatever you want, or even put in multiple names. If you do more than one, the names will switch randomly.
-
-On_portalrootbutton.caption
- {
-	"Second Website Caption"
-	"Another Second Website Caption"
- }
-
- //---- Websites in the Second Option --------------------------------------------------
- //These are the websites listed under that second button we just named up there. Like with the other option, these are the websites you want to link to. You can put whatever sites you want in here. Pay close attention to the formatting that follows!
- 
-On_sakura.portalsites
- {
- 	"Site Name 1"
-	"Site Name 1 Alternate"
-	--
-	"%ASC(1)http://somesite.com/%ASC(2)"
-	--
-	//Here, you'll notice that there are two names, a --, then a website bracketed by %ASC(1) and %ASC(2). What this will do is randomly chose between those two site names for the link. So if you open the menu, maybe it will say Site Name 1, or maybe it will say Site Name 1 Alternate. Honestly I find links changing names without warning kind of confusing, but maybe some find it amusing, idk. Put the address of the site you want to link to between the two ASC tags.
-	
-	"Site Name 2"
-	--
-	"%ASC(1)http://www.anothersite.org/%ASC(2)"
-	--
-	
-	//If you want to keep things simple, you can just give each website one name like so.
-	
-	"Site Name 3"
-	--
-	"%ASC(1)http://www.thirdsite.com/%ASC(2)"
-	--
-	"Site Name 4"
-	--
-	"%ASC(1)http://www.fourthsite.com/%ASC(2)"
-	--
-	"Site Name 5"
-	--
-	"%ASC(1)http://www.fifthsite.com/%ASC(2)"
-	
-	//You get the idea. You can add more links or take them away as you like following this basic formula.
- }
-
- 
-//---- Top Menu Option in the Second Character -----------------------------------------
-//If you right-click the secondary character, a tiny menu will pop up. This is the caption for the top option.
-
-On_kero.recommendbuttoncaption
- {
-	"Top Menu Option Caption"
- }
-
- //---- Top Menu Websites for the Second Character --------------------------------------
- //As with the above, this is another chance for you to add some links to some websites you like.
- 
-On_kero.recommendsites
- {
-	"A Site"
-	--
-	"%ASC(1)http://www.asite.com/%ASC(2)"
-	--
-	"Another Site"
-	--
-	"%ASC(1)http://anothersite.org/%ASC(2)"
- }
-
  //---- Update Menu Caption ------------------------------------------------------------
  //What it will say on the menu for the option to Update.
  
 On_updatebutton.caption
  {
-	"Update Menu Caption"
+	"Update"
 }
 
 //---- Dress-up Menu Caption ----------------------------------------------------------
@@ -170,7 +116,7 @@ On_updatebutton.caption
 
 On_dressuprootbutton.caption
 {
-	"Dress-Up Caption"
+	"Dress-Up"
 }
 
 //---- Headlines and RSS Feeds ---------------------------------------------------------
