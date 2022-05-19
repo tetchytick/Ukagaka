@@ -54,12 +54,12 @@ MouseMoveSakura
 				"\0\s[102]Stay away from my horns.\e"
 				"\0\s[102]Keep your claws away from my ruff.\e"
 				"\0\s[0]I will b--\s[18] \w8sear your face off. With venom."
-				"\0\s[103]She shoos your talons away."
+				"\0\s[103]She shoos you away."
 				"\0\s[103]She looks unimpressed."
 				"\0\s[102]Don't touch me.\e"
 				"\0\s[102]What are you trying to do?\e"
 				"\0\s[102]Do you need something?\e"
-				"\0\s[1]She ducks away from your talons.\e"
+				"\0\s[1]She ducks away from you.\e"
 				"\0\s[1]She looks uncomfortable.\e"
 				"\0\s[102]Out of my space.\e"
 				"\0\s[18]Stop.\e"
@@ -74,7 +74,7 @@ MouseMoveSakura
  				"\0\s[102]Claws off.\e"
 				"\0\s[103]She looks unimpressed."
 				"\0\s[102]Out of my space.\e"
-				"\0\s[103]She shoos your talons away."
+				"\0\s[103]She shoos you away."
 				"\0\s[18]Don't touch me.\e"
 				"\0\s[18]Stop.\e"
 				"\0\s[18]Stop that.\e"
@@ -132,10 +132,30 @@ MouseDoubleClickSakura
  {
 		if reference4 == "Face" 
 		{
-			if attack >= 1
+			if attack > 1
 			{
-			"\0\s[19]Again.\e"
+			"\0\s[26](You strike her at full force.\s[105])\n\n\Aghh!!\n\n\w8\w8\w8\w8(.\w2.\w2\s[27]She grits her teeth, but doesn't challenge you.)\e"
+			"\0\s[26](You lash at her face.\s[105])\n\n\Hhng!\n\n\w8\w8\s[26]\w8\w8.\w2.\w2\s[27]Who do you think you are?\e"
 			}
+			if attack > 2
+			{
+			"\0\s[26](You lash out at her..\w8\w4 But she \s[1]dodges out of the way.)\n\n\w8\s[16]Ha! Good tr--\n\n\s[26](You strike her again \s[105]while she's gloating.)\n\n\w8\w8\s[21]\w8.\w8.\w8.\e"
+			"\0\s[20](You move suddenly in her direction.)\s[28]\n\n\(She pushes you back.)\w8\w8\n\nEnough.\n\n\w8\w8\w8\s[26](You hit her harder.)\s[105]\n\n\Hnn.\w2.\w2.\w8\w8\w8\w8\s[17]\e"
+			}
+			if attack > 5
+			{
+			"\0\s[26](You aim for her teeth.)\s[105]\n\n\Ack!\n\n\w8\w8\w8\w8(Good.)\e"
+			"\0\s[101](She's trying to get away from you.)\w8\s[105]\n\n\Ghh!\n\n\w8\w8\w8\w8\w8\w8\w8\s[21](She won't.)\e"
+			"\0\s[27](She endures your strike.)\s[105]\n\n\Ghh.\w2.\w8\w8\w8\w8\s[17]\n\n\w8\w8\w8\w8(Good.)\e"
+			}
+			if attack > 8
+			{
+			"\0\s[20](You move suddenly in her direction.)\s[32]\n\n\Ah!\w8\w8\w8 ...\s[21]\n\n\w8\w8\w8\w8(Heh.)\e"
+			"\0\s[17](You tell her that she \s[13]deserves this.)\s[105]\n\n\!!\n\n\w8\w8\w8\w8\w8\w8\s[21](..She looks defeated.)\e"
+			"\0\s[14]You're a sick individual.\n\n\w8\s[13](That won't do.)\w8\w8\s[105]\n\n\Ghk!\w8\w8\w8 ...\s[21]\n\n\w8\w8\w8\w8(Heh.)\e"
+			}
+			if attack > 10
+			"\0\s[17](You strike her with all your strength.)\s[105]\w8\w8\w8\w8\n\n\s[4].\w8.\w8.\w8\w8\w8\n\n\w8\w8\w8\w8(She's given up.)\e"
 			else //if this is your first time punching her
 			{
 			FirstAttack
@@ -153,7 +173,11 @@ MouseDoubleClickSakura
 	
 	FirstAttack
 	{
+		attack += 1
+	{
+	if attack == 1
 	"\0\s[19](Are you sure you want to attack Legacy?)\w8\n\n\s[14]Hey.. What's with that expression?\w4\n\n\![*]\q[Attack,isuredo]     \![*]\q[Do not,noimsosorry]"
+	}
 	}
 
 	Select.isuredo

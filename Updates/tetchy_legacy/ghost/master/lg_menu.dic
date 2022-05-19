@@ -387,6 +387,9 @@ MenuRun
 	"\0\s[13](You tell her that Noctua won't \s[26]survive the war.)\n\n\w8\w8\s[21](You'd like to think she looks frightened.)"
 	"\0\s[13](You tell her that Moss won't \s[26]survive the war.)\n\n\w8\w8\s[21](You'd like to think she looks worried.)"
 	"\0\s[13](You tell her that she's running out of time.)\n\n\w8\w4\s[22]Stop trying to sound cryptic.\w4 It's embarrassing.\n\n\w8\s[13](She's pretends to seem unfazed.\s[17]\w4\w4.it's not working.)"
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
 	}
 	
 	
@@ -455,6 +458,9 @@ Select.givedrink
 			{
 			"\0\s[22]I'll pass for now, thank you."
 			"\0\s[13]She regards you closely for a moment, \w4\s[28]but ends up taking it.\w4\w8\w8\w8\w8\w8\s[30]"
+			--
+	"\n\n\w4/
+	\![*]\q[Go back.,giveitem]\e"
 //later add limits for drink each day
 		}
 		}
@@ -514,15 +520,15 @@ Select.givesnack
 			"\0\s[22]I'll pass for now, thank you."
 			"\0\s[14]..No, thank you.\n\n\w8\s[13](You tell her she seems hungry and offer her a %(fruits).)\n\n\w4\w8\s[18]I'm.\w4.\w4.\w8not interested."
 			--
-						"\n\n\w4/
-		\![*]\q[Go back.,giveitem]\e"
+			"\n\n\w4/
+			\![*]\q[Go back.,giveitem]\e"
 			}
 		}
 }
 
 Select.givetrinket
 {
-"\0\s[19](You offer her a %(trinkets).)\n\n\w8\s[29]Can I see that?\n\n\w4 (You tell her she can keep it. \w4..\s[19]She looks pleased.)\n\n\w8Thank you."
+"\0\s[19](You offer her a %(trinkets).)\n\n\w8\s[29]Can I see that?\n\n\w4(You tell her she can keep it. \w4\s[19]She looks pleased.)\s[20]\n\n\w8Thank you."
 "\0\s[13](You ask her if she wants a %(trinkets) you found.)\n\n\w8\s[8]It does look interesting..\n\n\w8\s[29](She takes it from you with a nod.)"
 "\0\s[13](You pull out a %(trinkets).)\n\n\w8\s[15]What are you doing with that? Be careful!\n\n\w8\s[28](She takes it from you.)"
 "\0\s[13](You show her a %(trinkets).)\n\n\w8\s[14]Don't be reckless.\n\n\w8\s[28](She takes it from you.)"
@@ -856,7 +862,7 @@ birthchecked
 
 Select.talkinter
  	{
- 		"\0\s[0]\b2How often do you want me to talk to you? The interval is currently set to %(talktime)./
+ 		"\0\s[0]\b2How often do you want me to talk to you?/
 		//note the new envelope here for %(talktime). You'll see it again in a second. You can replace the dialogue above with whatever you like, just make sure it ends with ./ and not \e.
  		\0\n\n[half]/
  		\![*]\q[Every 30 seconds,TALKMAX]\n/

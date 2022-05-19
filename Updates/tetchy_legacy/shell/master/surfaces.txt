@@ -6,10 +6,9 @@ element0,overlay,surface3000.png,0,0
 collision0,59,50,114,113,Face
 
 0interval,runonce
-0pattern1,3001,5,replace,0,0
-0pattern2,3002,15,replace,0,0
-0pattern3,3003,20,replace,0,0
-0pattern0,-1,100,replace,0,0
+0pattern1,3001,5,replace,6,0
+0pattern2,3002,10,replace,4,0
+0pattern3,3003,15,replace,2,0
 }
 
 
@@ -451,8 +450,8 @@ collision1,51,58,126,100,Face
 surface21
 {
 element0,overlay,surface2002.png,0,0
-collision0,169,38,224,72,Head
-collision1,91,70,150,121,Face
+collision0,174,37,217,66,Head
+collision1,172,59,241,119,Face
 }
 
 surface22
