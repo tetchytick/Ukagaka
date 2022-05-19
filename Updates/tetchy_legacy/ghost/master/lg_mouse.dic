@@ -183,7 +183,7 @@ MouseDoubleClickSakura
 	Select.isuredo
 	{
 	//attack +=1
-	"\0\s[26](You lunge forward and graze her across \s[105]the face.)\n\n\Hhk!!\n\n\w8\w8\w8(.\w2.\w2She's staring at you in shock.)\e"
+	"\0\s[26](You lunge forward and strike her across \s[105]the face.)\n\n\Hhk!!\n\n\w8\w8\w8\s[26](.\w2.\w2She's staring at you in shock.)\e"
 	}
 	
 	Select.noimsosorry
