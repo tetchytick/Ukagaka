@@ -58,6 +58,9 @@ OnNameTeach
 	reference0 = REPLACE(reference0," ","") //removes spaces
 	reference0 = REPLACE(reference0,".","") //removes periods
 	reference0 = REPLACE(reference0,"-","") //removes dashes
+{
+	nametaught = "true"
+}
 	
 	//Those extra TOLOWER/REPLACE things up there basically clean up the user's input so you don't have to check for Girl, GIRL, girl, GiRl, etc. It'll make it much easier to check for any specific name, since you won't have to account for any edge cases. Note that the names you will be checking for should be in all lowercase, however.
 	

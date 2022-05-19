@@ -89,15 +89,6 @@ MenuRun
 		//\![*]\q[Example2,talkaboutexample2] etc//
 	}
 	
-	Select.giveitem
-	{
-		"\b4\0\s[22]I don't want your garbage,\w4 thanks.\w8\w8\n\n\_q"
-		--
-		"(This menu will be available in future updates.)"
-		--
-		"\n\n\n\n/
-		\![*]\q[Back,BACKTOMENU]\e"
-	}
 	
 //QUESTIONMENURESPONSES
 
@@ -284,8 +275,8 @@ MenuRun
 		"\b4\0\s[19](What will you do?)\n\n\n[half]"
 		--
 		"\![*]\q[Praise,actpraise]    \![*]\q[Discuss,actdiscuss]    \![*]\q[Insult,actinsult]\n\n/
-		\![*]\q[Sing,actsing]    \![*]\q[Vent,actvent]\n\n/
-		                                               \![*]\q[Introduce Yourself,configmenu] \n\n\n\n/  
+		\![*]\q[Sing,actsing]    \![*]\q[Hug,acthug]    \![*]\q[Threaten,actthreaten]\n\n/
+		\![*]\q[Vent,actvent]\n\n\n\n/
 		\![*]\q[Nevermind.,BACKTOMENU]\e"
 	}
 	
@@ -353,6 +344,53 @@ MenuRun
 	\![*]\q[Go back.,doaction]\e"
 	}
 	
+	Select.acthug
+	{
+	"\0\s[13](You ask her for a hug.)\n\n\w8\s[22]Absolutely not.\n\n\w8\w8(Hug her anyway?)\w4\n\n\![*]\q[Hug,yeshug]     \![*]\q[Do not,nohugs]"
+	"\0\s[13](You ask her for a hug.)\n\n\w8\s[20]She's ignoring you.\n\n\w8\w8(Surprise hug her?)\w4\n\n\![*]\q[Hug,yeshug]     \![*]\q[Do not,nohugs]"
+	{
+	"\0\s[19](You open your arms in an inviting gesture.)\w8\n\n\s[13](.\w4.\w4She just looks confused.)"
+	"\0\s[13](You ask her if she likes hugs.)\w8\n\n\s[23]I don't know what you're implying,\w4 but \s[28]don't get any unwise ideas."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	}
+	
+	Select.yeshug
+	{
+	"\0\s[26](You rush forward to pull her into a tight hug.)\w5\s[28]\n\n(She shoves you away before you get the chance.)\n\n\w8\w8\w6.\w6.\w6.\s[12]Don't."
+	"\0\s[26](You take her by surprise and hug her.)\s[32]\w4\s[33]\n\nHngh!\n\w8\w8\w6.\w6.\w6.\s[12]Don't touch me."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+	
+	Select.nohugs
+	{
+	"\0\s[20]You decide to respect her boundaries. \w4Probably for the best."
+	"\0\s[20]You decide not to hug her. \w4Probably for the best."
+	--
+	"\n\n\w4/
+	\![*]\q[Go back.,doaction]\e"
+	}
+
+	Select.actthreaten
+	{
+	"\0\s[13](You tell her that you're going to take her place as RainWing Queen.)\n\n\w8.\w4.\w4.What?\n\n\w8\s[8](That was supposed to be threatening, but she mostly just looks confused.)"
+	"\0\s[13](You tell her that she's not going to be queen for much longer.)\n\n\w8.\w4.\w4.\s[15]What is that supposed to mean?\w4 Do you think that scares me?\w8\w8\n\s[8]Hmm.."
+	"\0\s[13](You tell her that her tribe will fall.)\n\n\w8\s[15]My tribe is in perfect condition. We are in no danger of 'falling.'\s[13]\n\n\w8(You tell her that she's going to be their \s[26]downfall.)\w8\w8\n\n\s[21]\w4.\w4.\w4."
+	"\0\s[13](You tell her that you're going to tell everyone \s[26]what she did.\w8\n\n\w4.\w4.\s[12]You don't know what you're talking about."
+	"\0\s[13](You tell her that the SkyWings will show no mercy.)\n\n\w8\w4\s[23]Ha!\w4 Like I haven't already heard that. \w4\s[16]Regardless, we're in no danger.\w4\s[20] I'll make sure of it."
+	"\0\s[19](You tell her that she's a fraud, \s[13]and one day everyone will find out.)\n\n\s[20]\w8.\w4.\w4She's doing her very best to ignore you."
+	"\0\s[13](You tell her that the war is already over.)\n\n\w8\s[28]No, it's not. Don't be a fool.\n\n\s[17]\w8(You might be imagining it, but she seems uncertain.)"
+	"\0\s[13](You tell her that Noctua won't \s[26]survive the war.)\n\n\w8\w8\s[21](You'd like to think she looks frightened.)"
+	"\0\s[13](You tell her that Moss won't \s[26]survive the war.)\n\n\w8\w8\s[21](You'd like to think she looks worried.)"
+	"\0\s[13](You tell her that she's running out of time.)\n\n\w8\w4\s[22]Stop trying to sound cryptic.\w4 It's embarrassing.\n\n\w8\s[13](She's pretends to seem unfazed.\s[17]\w4\w4.it's not working.)"
+	}
+	
+	
+	
 	Select.actvent
 	{
 	"\0\s[19](She's listening.)\w4\n(You tell her..)\![open,inputbox,OnVent,-1]\e"
@@ -385,10 +423,159 @@ MenuRun
 	}
 	}
 	
+//ITEM MENU
+
+	Select.giveitem
+	{
+		 "\b4\0\s[15]What? Why?"
+		 
+		 "\b4\0\s[14]Fine."
+
+		 "\b4\0\s[9](She's not paying attention.)"
+
+		--
+		 "\b4\n\n[half]\w5\0\s[13](You give her a..)\n\n"
+		--
+		"\![*]\q[Drink,givedrink]    \![*]\q[Snack,givesnack]\n\n/
+		\![*]\q[Scroll,givescroll]    \![*]\q[Trinket,givetrinket]    \![*]\q[Toy,givetoy]\n\n/
+		\![*]\q[Gift,givegift]    \![*]\q[Weapon,giveweapon]    \![*]\q[Scale,givescale]\n\n\n/
+		\![*]\q[Nevermind.,BACKTOMENU]\e"
+	}
 	
+//ITEM MENU RESPONSES
+Select.givedrink
+		{
+		givendrink += 1
+		{
+			if givendrink == 1
+			{
+			"\0\s[13](You offer her a cup of water.)\w4\n\n\s[15]Why should I trust you?\w4 It could be poisoned.\n\n\w6\s[13](You tell her that she's being ridiculous.)\w8\n\nShe glares at you for a moment,\w4\s[28] but ends up taking it.\w4\w8\w8\w8\w8\w8\s[30]"
+			}
+			else
+			{
+			"\0\s[22]I'll pass for now, thank you."
+			"\0\s[13]She regards you closely for a moment, \w4\s[28]but ends up taking it.\w4\w8\w8\w8\w8\w8\s[30]"
+//later add limits for drink each day
+		}
+		}
+		}
+	
+	Select.givescroll
+		{
+		givenscroll += 1
+		{
+			if givenscroll == 1
+			{
+			"\0\s[0]Is that one of the \f[italic,true]Pyrrhian Studies\f[italic,false] series?\w4\n\s[29]Give it here.\n\n\w8\w8\w8\s[31](She's thoroughly absorbed in the scroll.)"
+			}
+			elseif givenscroll == 2
+			{
+			"\0\s[25]Is that a copy of \f[italic,true]The Animus Histories?\f[italic,false]\w8 Where did you get that?\w4\n\s[29]Let me see.\n\n\w8\w8\w8\s[31](She's eagerly looking over the scroll.)"
+			}
+			elseif givenscroll == 3
+			{
+			"\0\s[19](You offer her a scroll.)\n\n\w8\s[15]Ah,\w5 \f[italic,true]The Sluglike Qualities of MudWings.\f[italic,false]\w8\nThat's a great one.\w4.\w4\s[16] Admittedly, it is not completely accurate.\n\w8\s[29]Let me see.\n\n\w8\w8\w8\s[31]"
+			}
+			elseif givenscroll >= 4
+			{
+			"\0\s[15]Is that \f[italic,true]The Missing Princess?\f[italic,false]\w8\s[19]\n\n(You offer it to her.)\w8\n\n\s[23]Oh, I'm not interested in ancient dragonet literature. \w8I've already read through all there is."
+			"\0\s[15]Is that \f[italic,true]Goodnight, Moons?\f[italic,false]\w8\s[19]\n\n(You offer it to her.)\w8\n\n\s[23]Oh, I'm not interested in ancient dragonet literature. \w8I've already read through all there is."
+			"\0\s[19](You pick a random scroll to give her.)\n\n\w4\s[15]You certainly have a lot of scrolls. \w4\s[23]I must admit, I'm impressed.\w5\n\s[29]Let me see.\n\n\w8\w4\s[31](She's reading through it intently.)"
+			"\0\s[16]I'm not sure if I have room for another scroll..\n\n\w4(.\w4.\w4.\s[29]She takes it anyway.)"
+			"\0\s[31](She's reading the \f[italic,true]Pyrrhian Studies\f[italic,false] scroll you gave her.\w4 Best to leave her to it.)"
+			"\0\s[31](She's reading the \f[italic,true]Animus Histories\f[italic,false] scroll right now.\w4 Best to leave her to it.)"
+			"\0\s[31](She's reading \f[italic,true]The Sluglike Qualities of MudWings\f[italic,false] right now. \w4Best to leave her to it.)"
+			"\0\s[19](.\w2.\w2.You've given her enough scrolls for now.)"
+			"\0\s[15]I have enough scrolls for the time being, thank you."
+			--
+			"\n\n\w4/
+		\![*]\q[Go back.,giveitem]\e"
+			}
+		}
+		}
+		
+Select.givesnack
+{
+		givensnack += 1
+		{
+			if givensnack == 1
+			{
+			"\0\s[13](You offer her a small snack.)\w8\n\n\s[15]What, trying to hold me over until you decide to release me?\w4\s[20] Oh, joy.\n\n\w6(You tell her to stop being dramatic.)\w8\n\nShe ignores you.\n\n\w8\w8(\s[26]..You throw a %(fruits) at her before she can \s[13]object.)"
+			--
+						"\n\n\w4/
+		\![*]\q[Go back.,giveitem]\e"
+			}
+			else
+			{
+			"\0\s[13](You offer her some %(stews).)\n\n\w8She stares at you for a moment, \w4\s[28]but ends up taking it.\w4\w8\w8\w8\w8\s[30]"
+			}
+			{
+			"\0\s[19](You offer her a %(fruits).)\n\n\w4\s[18]No, thank you."
+			"\0\s[22]I'll pass for now, thank you."
+			"\0\s[14]..No, thank you.\n\n\w8\s[13](You tell her she seems hungry and offer her a %(fruits).)\n\n\w4\w8\s[18]I'm.\w4.\w4.\w8not interested."
+			--
+						"\n\n\w4/
+		\![*]\q[Go back.,giveitem]\e"
+			}
+		}
+}
+
+Select.givetrinket
+{
+"\0\s[19](You offer her a %(trinkets).)\n\n\w8\s[29]Can I see that?\n\n\w4 (You tell her she can keep it. \w4..\s[19]She looks pleased.)\n\n\w8Thank you."
+"\0\s[13](You ask her if she wants a %(trinkets) you found.)\n\n\w8\s[8]It does look interesting..\n\n\w8\s[29](She takes it from you with a nod.)"
+"\0\s[13](You pull out a %(trinkets).)\n\n\w8\s[15]What are you doing with that? Be careful!\n\n\w8\s[28](She takes it from you.)"
+"\0\s[13](You show her a %(trinkets).)\n\n\w8\s[14]Don't be reckless.\n\n\w8\s[28](She takes it from you.)"
+"\0\s[13](You show her a %(trinkets).)\n\n\w8\s[28]Give me that.\n\n\w8(She's looking it over carefully.)"
+--
+"\n\n\w4/
+\![*]\q[Go back.,giveitem]\e"
+}
+
+Select.givetoy
+{
+"\0\s[13](You offer her a %(toys).)\n\n\w4\s[14]That is insulting.\w4 Do I look like a dragonet to you?"
+"\0\s[13](You offer her a %(toys).)\n\n\w4\s[15]What is this?\w4 I don't want this. I'm a grown dragon."
+"\0\s[13](You offer her a %(toys).)\n\n\w4.\w4.\w4.\s[28]\w3She takes it from you and stashes it.\s[20]"
+"\0\s[13](You ask her if she wants this %(toys) you found.)\n\n\w8\s[15]Why would I want that? I'm a grown RainWing.\n\n\w4\s[13](You give it to her anyway.\w4\nShe rolls her eyes \s[20]and stashes it.)"
+"\0\s[13](You offer her a %(toys).)\n\n\w8\s[28]Yes, I'll take it. \w4\s[6]Horns might like it."
+--
+"\n\n\w4/
+\![*]\q[Go back.,giveitem]\e"
+}
+
+Select.givegift
+{
+"\0\s[19](You hold out a %(gifts).)\n\n\w8\s[29]For me?\n\n\w8\w8\s[24](She looks it over thoughtfully, and nods.)\n\n\w8\s[23]Thank you."
+"\0\s[19](You hold out a %(gifts).)\n\n\w8\s[14]..What?\s[13]\n\n\w8(You tell her to take it.)\n\n\w8\s[28](She does, reluctantly.)\n\n\w8\w8\s[20]..Thank you."
+"\0\s[19](You tell her you got her a %(gifts).)\n\n\w8\s[14] For me? \w4.\w4.\w4Why?\n\n\w8\s[13](You tell her to just\s[28] take it.\w8 She looks perplexed.)\s[17]"
+--
+"\n\n\w4/
+\![*]\q[Go back.,giveitem]\e"
+}
+
+Select.giveweapon
+{
+"\0\s[13](You show her a %(weapons).)\w8\n\n\s[15]Is that a threat?"
+"\0\s[13](You show her a %(weapons) you found.)\w8\n\n\s[15]What is that for? Why do you have it here?"
+"\0\s[13](You offer her a %(weapons).)\w8\n\n(She stares at you, confused.)"
+"\0\s[13](You offer her a %(weapons).)\w8\n\n\s[28]..I don't want that."
+"\0\s[13](You throw a %(weapons) at her.)\w8\n\n\s[20](She leans out of the way and it soars past her.)\n\n\w8\s[23]That was sad."
+"\0\s[19](You offer her a few well-crafted arrows. \w4\s[13]She looks at you skeptically.)\n\n\w8\s[29]..Sure, I'll take those."
+--
+"\n\n\w4/
+\![*]\q[Go back.,giveitem]\e"
+}
+
+Select.givescale
+{
+"\0\s[15]What are you trying to say?\w4 \s[28]I don't need your charity.\n\n\w8\w8\s[8]Although, I suppose I could sell you some things from the village.. We can always do with new trade."
+--
+"\n\n\w4/
+\![*]\q[Go back.,giveitem]\e"
+}
 
 //Leave this alone
-//act menu where you can be nosy
 OnLastTalk 
 {
 "%(lastTalk)\e"
@@ -794,9 +981,18 @@ Select.dosomething
 		\![*]\q[Empty Recycle Bin,ChoiceGarbagecan]\n\n/
 		\![*]\q[Open Calendar,CALENDAR]\n\n/
 		\![*]\q[Check Email,MailCheck]\n\n/
+		\![*]\q[Bug Report,bugreport]\n\n/
 		\![*]\q[Open SSP Preferences,sspconfig]\n\n/
 		\![*]\q[System Information,ChoiceSystemInformation]\n\n\n/
  		\![*]\q[Back to main menu,BACKTOMENU]\e"
+}
+
+Select.bugreport
+{
+"\0\s[8]Let's see.\w4.\w4.\w8\w8\w8\n\n\s[15]It says here that you can send bug reports to tetchytick#3609 on Discord."
+--
+"\n\n\w4/
+\![*]\q[Got it.,BACKTOMENU]\e"
 }
 
 //When the user clicks Open Calender. This will open the calender function of SSP, an in-built feature that you don't have to worry about in the least.

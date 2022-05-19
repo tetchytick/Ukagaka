@@ -36,29 +36,19 @@ OnAiTalk
  }
 
 
-//--RandomTalk 
- //Alright, here we go! This is where ALL your ghost's random dialogue will go! These are the conversations that they'll have with you or each other that pop up depending on the talk rate defined in menu.dic (or if you ignored that, set in bootend.dic in the first boot, which would be every five minutes).
- 
-//*********************Advanced User Info*******************************
-//These text boxes are meant for those who have an interest in expanding or using more complicated functions in their ghost. Also for my own reference in the future since I plan on using this template too, haha. If you have no interest in any of this and just want to keep things as simple as possible, feel free to skip these boxes.
-
-//You CAN link to other pools of dialogue in RandomTalk using envelopes/functions, such as %(teatalk) to pull from a pool of dialogue about tea. Then you'd just add that line in among the other dialogue in here with %(teatalk). However, this vastly lowers the probability of dialogue in that function being called. If teatalk only gets called 1/5 times, and it has 10 pieces of dialogue in there, then you're only getting... uh... god, I'm bad at fractions... 1...50th? a chance that a certain teatalk line will appear. LOOK THE GIST IS THAT THE PROBABILITY GETS LOW. This applies to any kind of dialogue in a conditional. A simpler example would be if you have one piece of normal dialogue, and one piece that's an if check that has four pieces of dialogue in there. You'd end up with a 50% chance to get that normal dialogue, and a 50% chance for ONE of the other four pieces of dialogue... which makes the odds of seeing any specific line in that special dialogue that much lower.
-
-//You can't do things like put OnSystemBoot or something in RandomTalk. You could use \![raise] to pull something though, although I'd be careful about it. More on these kind of things and conditionals in general in the coding page on the walkthrough.
-
-//If you split up RandomTalk with if/else checks, then you can redirect in an If to another function, like... if chargermode == "on" { ChargerChatting } else {normal random talk dialogue}. This would redirect the random dialogue to ChargerChatting instead. You can't just throw a function into RandomTalk directly though, like "dialogue 1" "dialogue 2" OnFunctionname "dialogue 3", that kind of thing. You'll have to split it off into its own if or point to it with an envelope.
-
-//You can do multiple ifs in RandomTalk if required... like an if for if a character is asleep, or if a third character is present, or if they're having a nervous breakdown, or if they're sulking. It depends! You can add a bunch of checks leading to specialized pools if you want. Just make sure you leave some normal dialogue in the last else for RandomTalk (unless you want to redirect that somewhere else with an envelope too... although that seems a bit redundant, honestly.)
-//***********************************************************************
-
-//nonoverlap_pool should make it so all your dialogue has an equal probability of being called, and it will do each line of dialogue before repeating them. Why is kind of technical and a bit outside the scope of this template, you can look into why elsewhere if you want.
-
 RandomTalk : nonoverlap_pool
 {
-	//Alright, here is where all your dialogue will go. I hope you studied how to format dialogue carefully in the walkthrough, as there is little here I can help you with. You're going to have to write most of it yourself. So instead, I'll give you a set of examples to look at.
+	if givenscroll >= 3
+{
+	"\0\s[31](She's reading the \f[italic,true]Pyrrhian Studies\f[italic,false] scroll you gave her.)"
+	"\0\s[31](She's reading the \f[italic,true]Animus Histories\f[italic,false] scroll you gave her.)"
+	"\0\s[31](Looks like she's reading \n\f[italic,true]The Sluglike Qualities of MudWings\f[italic,false].)"
+	"\0\s[31](She's reading one of the scrolls you gave her.)"
+}
+	
+	//DEPENDENT DIALOGUE
 	
 	//NEUTRAL DIALOGUE
-
 	"\0\s[9](She looks deep in thought.)\e"
 
 	"\0\s[0]My wings are tired. I've done too much \s[9]flying today.\e"
@@ -67,7 +57,7 @@ RandomTalk : nonoverlap_pool
 
 	"\0\s[7]I do hope you'll let me go soon.\nI have a \s[6]hungry fruit bat to feed.\e"
 
-	"\0\s[0]You are the bane of my existence.\w8\w4\s[5] Congratulations.\w8\w8\s[14]\e"
+	"\0\s[0]You are the bane of my existence.\w8\w4\s[6] Congratulations.\w8\w8\s[14]\e"
 
 	"\0\s[15]Don't you have anything better to do? Or are you going to keep interrogating\nme for the rest of time?\e"
 	

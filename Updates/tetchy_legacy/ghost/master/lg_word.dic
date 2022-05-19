@@ -5,13 +5,112 @@
 
 //So where does this file come in? Well, you can define your own envelopes/variables if you want! Here's an example.
 
-exampleenvelope
+fruits
 {
-	"Example Envelope Dialogue 1"
-	"Example Envelope Dialogue 2"
-	"Example Envelope Dialogue 3"
+	"jackfruit"
+	"mango"
+	"few cherries"
+	"banana"
+	"coconut"
+	"fig"
+	"few grapes"
+	"pineapple"
+	"squash"
+	"potato"
+	"cacao pod"
+	"few blueberries"
+	"few apricots"	
 }
 
+stews
+{
+	"mushroom stew"
+	"vegetable stew"
+	"wild rice stew"
+	"tomato stew"
+	"potato stew"
+}
+
+weapons
+{
+	"small blade"
+	"large blade"
+	"steel dagger"
+	"sharpened staff"
+	"sturdy club"
+	"polished halberd"
+	"crossbow"
+	"longbow"
+	"sharp blue boomerang"
+	"double-bladed spear"
+	"bladed axe"
+	"neat scythe"
+	"long flail"
+	"heavy javelin"
+	"shiny trident"
+}
+
+toys
+{
+	"small wooden top"
+	"large wooden top"
+	"wooden rattle"
+	"small whistle"
+	"wooden chicken on wheels"
+	"wooden yo-yo"
+	"stackable wooden hoop set"
+	"set of wooden shapes"
+	"paper kite"
+	"flimsy wooden sword"
+}
+
+trinkets
+{
+	"few ancient scrolls"
+	"miscellaneous object"
+	"wooden carving"
+	"strange carving"
+	"broken watch"
+	"handheld instrument"
+	"scroll of cyphers"
+	"strange key"
+	"carved tablet"
+	"slate with strange engravings"
+	"cracked old arrowhead"
+	"ancient string of beads"
+	"painted quill"
+	"painted skull"
+	"strange bell"
+	"dagger with strange markings"
+	"broken battle talon"
+	"rusty medallion"
+	"rusty part"
+	"strange mask"
+	"strange figurine"
+	"scroll written in a strange language"
+	"ancient inkpot"
+	"miscellaneous artifact"
+	"cracked ancient ring"
+	"strange locket"
+	"shattered ancient mirror"
+	"golden chalice"
+	"shiny rock"
+}
+
+gifts
+{
+	"bouquet of flowers"
+	"treat for fruit bats"
+	"strange-looking relic"
+	"few blank scrolls"
+	"few rare herbs"
+	"few interesting scrolls"
+	"well-crafted pouch"
+	"sunset pink ring"
+	"beautiful painting"
+}
+	
+	
 //As you can see, we stated a word, opened some brackets, wrote some text, and closed the brackets. Now when you write ghost dialogue, you can write %(exampleenvelope) and your ghost will randomly display any of the three bits of text within the brackets! You can go ahead and test this yourself to see how it works, and I'll include some sample dialogue with this in aitalk.dic.
 
 //What can you use this kind of envelope for? You can store tons of random information to keep your ghost's dialogue varied! You can store various cities you like in %(city), musicians you like in %(musicians), places your ghost has been in %(places), food you like in %(food), movies you like in %(movie), fandoms you like in %(fandom), characters you like in %(fandomcharacter), celebrities you like under %(celebrity) or friends of yours in %(friends) or bnfs in %(bnfs), folders on your computer under %(folders), Pokemon you like under %(pokemon), insults under %(insult), swear words under %(swearword) which could potentially be hilarious, just about anything! You can make lists of absolutely anything to use with dialogue for your ghost! This .dic file is only limited by your imagination!

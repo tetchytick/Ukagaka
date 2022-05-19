@@ -267,16 +267,6 @@ normalboottalk
 		
 		"\0\s[100]Wh--\w8\w8\s[0]Oh. It's just you.\e"
 	
-		"\0\s[16]And so I told him, 'of course it upset your stomach. This is your fifteenth "
-			--
-			"pineapple"
-			"watermelon"
-			"durian"
-			"grapefruit"
-			"coconut"
-			"papaya"
-			--
-		" tod--'\s[2]\n\w8.\w8.\w8.\s[14]We shall never speak of this.\e"
 		} 
 		
  	else
@@ -333,6 +323,10 @@ normalboottalk
 		
  		"\0\s[16]And to think I thought you might be sleeping. \s[15]That makes two of us, I suppose.\e"
 		}
+		if givenscroll >= 1
+		{
+		"\0\s[31]She's reading one of the scrolls you gave her.)\e"
+		}
 	}
 }
 
@@ -357,7 +351,7 @@ OnClose
 				"\0\s[0]Good. Now I can actually get some things done.\w8"
 				"\0\s[6]Finally.\w4"
 				"\0\s[0]Bored, are you?\w8"
-				"\0\s[20]Wonderful. See you soon, I'd imagine.\w8"
+				"\0\s[20]Wonderful. See you soon, I imagine.\w8"
 			}
 			else
 			{

@@ -1,10 +1,6 @@
 Charset,UTF-8
-install,704176303
-homeurl_found,1
-surfacecount,45
-homeurl,https://raw.githubusercontent.com/tetchytick/Ukagaka/main/Updates/tetchy_legacy/
-update_result,OK(0)
-firstboot,704176323
-update_time,705265458
-commitmemorysize,3416130
-lastboot,705266594
+install,706242617
+surfacecount,58
+firstboot,706242617
+commitmemorysize,4731712
+lastboot,706242617

@@ -94,36 +94,6 @@ MouseMoveSakura
  //---- MouseMoveKero -----------------------------------------------------------------
  //MouseMoveKero is exactly like the above, except set up for your second character. 
  
-MouseMoveKero
- {
-	if reference4 != ""
- 	{
- 		stroke++
- 		if stroke >= 40
-		{
-			stroke = 0
-			if reference4 == "Face" //Put in the name of your collision area you set up for your secondary character here.
- 			{
-				"\1\s[10]This is a face touching dialogue.\e"
-				"\1\s[10]This is another face touching dialogue.\e"
-				"\1\s[10]This is yet another face touching dialogue.\e"
-				//Replace this dialogue with your secondary character's dialogue.
- 			}
-			elseif reference4 == "Point" //Like above, put in the name of another collision you set up in surfaces.txt for the secondary character. You can keep adding more elseifs like this for any extra collisions you may have set up.
-			{
-				"\1\s[10]This is a point touching dialogue since I don't really have a head, being a triangle.\e"
-				"\1\s[10]This is another point touching dialogue.\e"
-				"\1\s[10]This is yet another point touching dialogue.\e"
-				//Replace this dialogue as appropriate.
-			}	
- 		}
-	}
- 	else
-	{
- 		// If the mouse isn't over the ghost, it'll zero out the stroke value.
-		stroke = 0
- 	}
-}
 
 //---- OnMouseDoubleClick -------------------------------------------------------
 //This is set up much like OnMouseMove above, except this is checking to see if the user is double clicking on the ghost. You also don't need to touch any of this. 
@@ -138,10 +108,7 @@ OnMouseDoubleClick
 		{
 		MouseDoubleClickSakura
 		}
-		else
-		{
- 		MouseDoubleClickKero
-		}
+
 	}
  }
 
@@ -163,42 +130,43 @@ OnMouseDoubleClick
  
 MouseDoubleClickSakura
  {
- 	//if reference4 == "Head" || reference4 == "Face" //here, this is checking to see if the user is double clicking on either the character's head OR their face, which for our purposes means they're hitting the ghost. More about operators at the walkthrough.
-	//{
-	//	"\0\s[0]This is the hitting dialogue.\w8\1\s[15]lol\w8\0\s[9]\n\n[half]Shut up.\e"
-	//	"\0\s[0]This is another hitting dialogue.\e"
-	//	"\0\s[0]This is yet another bit of text for hitting.\e"
-	//	"\0\s[0]This is the fourth hitting dialogue.\e"
-		//Replace this dialogue with appropriate dialogue as you need. You can add more or cut it down if you want, even down to nothing if you want no response from your ghost at all when those areas are double clicked.
- //	}
-	//else
- 	//{
-		//Otherwise, if the user doubleclicks somewhere else on the character, they will open their menu as detailed in menu.dic.
- 		OpenSakuraMenu
-	}
- 
+		if reference4 == "Face" 
+		{
+			if attack >= 1
+			{
+			"\0\s[19]Again.\e"
+			}
+			else //if this is your first time punching her
+			{
+			FirstAttack
+			}
+		}
+				else
+				{
+				OpenSakuraMenu
+				}
+			//Otherwise, if the user doubleclicks somewhere else on the character, they will open their menu as detailed in menu.dic.
+			}
 
- 
- //---- MouseDoubleClickKero -----------------------------------------------------------
- //This is just the same as MouseDoubleClickSakura above, except for your secondary character. The same principles apply, including how to make your character unhittable.
- 
- 
-MouseDoubleClickKero
- {
- 	if reference4 == "Face" //Triangle doesn't have a separate head really, being a triangle, so this only happens if you doubleclick his face.
+	
+	
+	
+	FirstAttack
 	{
-		"\1\s[10]This is hitting dialogue.\w8\0\s[5]ha ha\w8\1\s[19]\n\n[half]Quiet.\e"
-		"\1\s[10]This is another hit dialogue.\e"
-		"\1\s[10]This is yet another hit dialogue.\e"
-		"\1\s[10]This is the fourth hitting dialogue.\e"
-		//Replace the dialogue here for the second character with whatever you want. What I said above about adding or trimming still holds here.
- 	}
-	else //Otherwise if you click anywhere else on Triangle's body
- 	{
-		OpenKeroMenu //This will open his menu set up in menu.dic.
+	"\0\s[19](Are you sure you want to attack Legacy?)\w8\n\n\s[14]Hey.. What's with that expression?\w4\n\n\![*]\q[Attack,isuredo]     \![*]\q[Do not,noimsosorry]"
 	}
- }
 
+	Select.isuredo
+	{
+	//attack +=1
+	"\0\s[26](You lunge forward and graze her across \s[105]the face.)\n\n\Hhk!!\n\n\w8\w8\w8(.\w2.\w2She's staring at you in shock.)\e"
+	}
+	
+	Select.noimsosorry
+	{
+	"\0\s[13]Not this time.\e"
+	}
+ 
  //*********************Advanced User Info*******************************
  //There are other mouse related functions you could set up much like the above, such as OnMouseDragStart, OnMouseDragEnd, OnMouseWheel, and others which correspond to various things you can do with your mouse. You can probably guess what those functions do just by their names - OnMouseWheel would be if someone spun their mouse wheel over a certain area, for example. If you're interested in these, I'd recommend doing some reading at the CROW-SSP Encyclopedia to get a better idea of them and settle down for some trial and error learning as you try to put them in.
  //***********************************************************************
