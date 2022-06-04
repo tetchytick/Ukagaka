@@ -989,9 +989,50 @@ Select.dosomething
 		\![*]\q[Check Email,MailCheck]\n\n/
 		\![*]\q[Bug Report,bugreport]\n\n/
 		\![*]\q[Open SSP Preferences,sspconfig]\n\n/
-		\![*]\q[System Information,ChoiceSystemInformation]\n\n\n/
+		\![*]\q[System Information,ChoiceSystemInformation]\n\n/
+		\f[bold,1]\![*]\q[Reset Legacy,resetlegacy]\f[bold,0]\n\n\n/
  		\![*]\q[Back to main menu,BACKTOMENU]\e"
+
 }
+
+Select.resetlegacy
+{
+	TimeToReset
+}
+
+TimeToReset
+{
+	"\s[19](Do you want to reset Legacy? \w4She will forget everything you have ever done.)\n\n\s[14]\w4.\w4.\w4.Why are you looking at me like that?\w8\n\n"
+	--
+	"\![*]\q[Yes.,yepgoodbye]     \![*]\q[No!,BACKTOMENU]\e"
+}
+
+Select.yepgoodbye
+{
+	ResetVariables
+	"\s[13]Erasing.\w4.\w4.\w8\w8\c\w8\s[10]\w8\w8\w8\s[100]\w4Whoa!\n\w8\w4Where.\w2.\w2Where am I?\n\n\w8\s[101](Seems like it worked..)\n\n\w8\w8\w8\s[15]This looks to be some sort of bizarre prison.\w8\s[14] Say what you'd like so I can leave, strange dragon.\w4"
+}
+
+ResetVariables
+{
+	givenscroll = 0
+	givendrink = 0
+	givensnack = 0
+	attack = 0
+	lastTalk = "" 
+	passhour = 0
+	passmin = 0 
+	passsec = 0 
+ 	username         = "USER" 
+	stroke           = 0	
+ 	teachusername    = 0	
+	mikireflag       = 0	
+ 	birthdayprint = "????" 
+	deleteshitai = "OFF" 
+	nowshell = "master" 
+	firstboot = 1 
+}
+
 
 Select.bugreport
 {
